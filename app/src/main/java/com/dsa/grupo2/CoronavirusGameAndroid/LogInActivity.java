@@ -3,6 +3,7 @@ package com.dsa.grupo2.CoronavirusGameAndroid;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -44,6 +45,7 @@ public class LogInActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 Toast.makeText(context, "Arreglado", Toast.LENGTH_LONG).show();
+                openMainMenu();
             }
 
             @Override
@@ -51,5 +53,9 @@ public class LogInActivity extends AppCompatActivity {
                 Toast.makeText(context, "Error", Toast.LENGTH_LONG).show();
             }
         });
+    }
+    public void openMainMenu(){
+        Intent intent = new Intent(this, MenuActivity.class);
+        startActivity(intent);
     }
 }

@@ -9,6 +9,10 @@ public class User {
 
     public User() {
     }
+    public User(String name, int exp) {
+        this.name = name;
+        this.exp = exp;
+    }
 
     public String getId() {
         return id;

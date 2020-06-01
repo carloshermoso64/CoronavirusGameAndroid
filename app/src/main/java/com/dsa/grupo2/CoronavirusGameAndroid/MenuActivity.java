@@ -1,0 +1,32 @@
+package com.dsa.grupo2.CoronavirusGameAndroid;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+public class MenuActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_menu);
+        final Button playbtn = (Button) findViewById(R.id.PlayButton);
+        final Button historybtn = (Button) findViewById(R.id.HistoryBurron);
+        final Button rankingbtn = (Button) findViewById(R.id.RankingButton);
+        final Button storebtn = (Button) findViewById(R.id.StoreButton);
+
+        rankingbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openRankingActivity();
+            }
+        });
+    }
+    public void openRankingActivity(){
+        Intent intent = new Intent(this,RankingActivity.class);
+        startActivity(intent);
+    }
+}

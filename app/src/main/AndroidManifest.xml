@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".LogInActivity"></activity>
+        <activity android:name=".MenuActivity"></activity>
+        <activity android:name=".RankingActivity" />
+        <activity android:name=".LogInActivity" />
         <activity android:name=".RegisterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
