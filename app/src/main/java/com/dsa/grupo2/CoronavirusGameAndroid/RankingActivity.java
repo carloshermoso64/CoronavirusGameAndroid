@@ -38,7 +38,7 @@ public class RankingActivity extends AppCompatActivity {
             textView.setTextColor(Color.WHITE);
             row.addView(textView);
         }
-        lista.addView(row); 
+        lista.addView(row);
 
         for (int i=0; i < userList.size(); i++){
             textView = new TextView(getBaseContext());

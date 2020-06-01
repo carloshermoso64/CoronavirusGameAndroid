@@ -4,10 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
-<<<<<<< HEAD
-=======
 import android.content.SharedPreferences;
->>>>>>> e7e92631e3432cca572c53ea39c0337c04fe1dcd
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -54,18 +51,14 @@ public class LogInActivity extends AppCompatActivity {
         login.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-<<<<<<< HEAD
                 Toast.makeText(context, "Arreglado", Toast.LENGTH_LONG).show();
-                openMainMenu();
-=======
                 if (response.code() == 201) {
                     String token = response.body();
                     ApiConn.getInstace().setUserToken(token);
                     editor.putString("token", token);
                     editor.commit();
-                    startActivity(new Intent(context, MainMenuActivity.class));
+                    startActivity(new Intent(context, MenuActivity.class));
                 }
->>>>>>> e7e92631e3432cca572c53ea39c0337c04fe1dcd
             }
             @Override
             public void onFailure(Call<String> call, Throwable t) {
@@ -73,8 +66,5 @@ public class LogInActivity extends AppCompatActivity {
             }
         });
     }
-    public void openMainMenu(){
-        Intent intent = new Intent(this, MenuActivity.class);
-        startActivity(intent);
-    }
+
 }
