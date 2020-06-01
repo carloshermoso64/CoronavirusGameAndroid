@@ -3,6 +3,8 @@ package com.dsa.grupo2.CoronavirusGameAndroid;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -22,6 +24,9 @@ public class LogInActivity extends AppCompatActivity {
     public TextInputLayout textUser, textPassword;
     Context context;
 
+    SharedPreferences sharedPref;
+    SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +37,9 @@ public class LogInActivity extends AppCompatActivity {
 
         service = ApiConn.getInstace().getUserService();
         context = getApplicationContext();
+
+        sharedPref = context.getSharedPreferences("coronavirusgame", Context.MODE_PRIVATE);
+        editor = sharedPref.edit();
     }
 
     public void logIn(View v) {
@@ -43,9 +51,14 @@ public class LogInActivity extends AppCompatActivity {
         login.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                Toast.makeText(context, "Arreglado", Toast.LENGTH_LONG).show();
+                if (response.code() == 201) {
+                    String token = response.body();
+                    ApiConn.getInstace().setUserToken(token);
+                    editor.putString("token", token);
+                    editor.commit();
+                    startActivity(new Intent(context, MainMenuActivity.class));
+                }
             }
-
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 Toast.makeText(context, "Error", Toast.LENGTH_LONG).show();
