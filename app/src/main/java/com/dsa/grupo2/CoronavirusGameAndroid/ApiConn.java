@@ -16,6 +16,7 @@ public class ApiConn {
     private OkHttpClient client;
     private Retrofit retrofit;
     private UserService userService;
+    private String userToken;
 
     public static ApiConn getInstace() {
         if (instace == null)
@@ -39,6 +40,14 @@ public class ApiConn {
                 .build();
 
         this.userService = retrofit.create(UserService.class);
+    }
+
+    public String getUserToken() {
+        return userToken;
+    }
+
+    public void setUserToken(String userToken) {
+        this.userToken = userToken;
     }
 
     public UserService getUserService() {
