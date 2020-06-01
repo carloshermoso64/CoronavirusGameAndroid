@@ -26,7 +26,7 @@ public class RankingActivity extends AppCompatActivity {
         User segundo = new User("pepito", 1);
         userList.add(primero);
         userList.add(segundo);
-        TableLayout lista = (TableLayout) findViewById(R.id.RankingTable);
+        TableLayout lista = findViewById(R.id.RankingTable);
         TableRow row = new TableRow(getBaseContext());
         TextView textView;
         for (int i=0; i < userList.size(); i++){
@@ -34,8 +34,19 @@ public class RankingActivity extends AppCompatActivity {
             textView.setGravity(Gravity.CENTER_VERTICAL);
             textView.setPadding(15,15,15,15);
             textView.setBackgroundResource(R.color.colorPrimary);
+            textView.setText(userList.get(i).getId()+"-->"+userList.get(i).getExp());
+            textView.setTextColor(Color.WHITE);
+            row.addView(textView);
+        }
+        lista.addView(row); 
+
+        for (int i=0; i < userList.size(); i++){
+            textView = new TextView(getBaseContext());
+            textView.setGravity(Gravity.CENTER_VERTICAL);
+            textView.setPadding(15,15,15,15);
+            textView.setBackgroundResource(R.color.colorPrimary);
             textView.setText(userList.get(i).getId());
-            textView.setTextColor(Color.BLACK);
+            textView.setTextColor(Color.WHITE);
             row.addView(textView);
         }
         lista.addView(row);

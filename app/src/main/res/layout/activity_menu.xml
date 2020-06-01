@@ -8,20 +8,22 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="405dp"
+        android:layout_width="400dp"
         android:layout_height="216dp"
-        app:srcCompat="@drawable/logo"
-        tools:layout_editor_absoluteX="3dp"
-        tools:layout_editor_absoluteY="0dp" />
+        app:layout_constraintBottom_toTopOf="@+id/UserName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
 
     <TextView
         android:id="@+id/UserName"
         android:layout_width="116dp"
         android:layout_height="60dp"
         android:text="User ID"
+        app:layout_constraintBottom_toTopOf="@+id/PlayButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="248dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/PlayButton"
