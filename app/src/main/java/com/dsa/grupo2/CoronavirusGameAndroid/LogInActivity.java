@@ -43,7 +43,7 @@ public class LogInActivity extends AppCompatActivity {
         login.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                Toast.makeText(context, "Error", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Arreglado", Toast.LENGTH_LONG).show();
             }
 
             @Override
