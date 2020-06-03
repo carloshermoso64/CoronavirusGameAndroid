@@ -13,23 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-<<<<<<< HEAD
-        <activity android:name=".MenuActivity"></activity>
+        <activity android:name=".MenuActivity"/>
         <activity android:name=".RankingActivity" />
         <activity android:name=".LogInActivity" />
-        <activity android:name=".RegisterActivity">
-=======
-        <activity android:name=".MainMenuActivity"></activity>
+        <activity android:name=".RegisterActivity"/>
         <activity android:name=".SplashActivity">
->>>>>>> e7e92631e3432cca572c53ea39c0337c04fe1dcd
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LogInActivity" />
-        <activity android:name=".RegisterActivity"></activity>
     </application>
 
 </manifest>

@@ -25,7 +25,7 @@ public class SplashActivity extends AppCompatActivity {
 
         if (!token.equals("notoken")) {
             ApiConn.getInstace().setUserToken(token);
-            mRunnable = () -> startActivity(new Intent(getApplicationContext(), MainMenuActivity.class));
+            mRunnable = () -> startActivity(new Intent(getApplicationContext(), MenuActivity.class));
         }
 
         else {

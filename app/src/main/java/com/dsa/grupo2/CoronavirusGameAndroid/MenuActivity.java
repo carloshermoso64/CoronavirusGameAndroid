@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class MenuActivity extends AppCompatActivity {
+    final LoadingDialog loadingDialog = new LoadingDialog(MenuActivity.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,12 +22,14 @@ public class MenuActivity extends AppCompatActivity {
         rankingbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                loadingDialog.startLoadingDialog();
                 openRankingActivity();
             }
         });
     }
     public void openRankingActivity(){
         Intent intent = new Intent(this,RankingActivity.class);
+        loadingDialog.dismissDialog();
         startActivity(intent);
     }
 }

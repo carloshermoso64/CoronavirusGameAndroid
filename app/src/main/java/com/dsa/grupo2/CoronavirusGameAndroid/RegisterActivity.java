@@ -31,6 +31,8 @@ public class RegisterActivity extends AppCompatActivity {
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor;
 
+    final LoadingDialog loadingDialog = new LoadingDialog(RegisterActivity.this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -46,9 +48,11 @@ public class RegisterActivity extends AppCompatActivity {
 
         sharedPref = context.getSharedPreferences("coronavirusgame", Context.MODE_PRIVATE);
         editor = sharedPref.edit();
+
     }
 
     public void register(View v) {
+        loadingDialog.startLoadingDialog();
         User u = new User();
         u.setName(textUser.getEditText().getText().toString());
         u.setPassword(textPassword.getEditText().getText().toString());
@@ -61,11 +65,16 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(context, "Error", Toast.LENGTH_LONG).show();
                 } else if (response.code() == 201) {
                     LogIn(u.getName(),u.getPassword());
+                } else if (response.code() == 500){
+                    Toast.makeText(context, "NullPointerException (basededatos)",Toast.LENGTH_LONG).show();
                 }
+                loadingDialog.dismissDialog();
             }
             @Override
             public void onFailure(Call<User> call, Throwable t) {
+
                 Toast.makeText(context, "Error", Toast.LENGTH_LONG).show();
+                loadingDialog.dismissDialog();
             }
         });
     }
@@ -88,7 +97,7 @@ public class RegisterActivity extends AppCompatActivity {
                     ApiConn.getInstace().setUserToken(token);
                     editor.putString("token", token);
                     editor.commit();
-                    startActivity(new Intent(context, MainMenuActivity.class));
+                    startActivity(new Intent(context, MenuActivity.class));
                 }
             }
             @Override

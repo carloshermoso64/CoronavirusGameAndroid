@@ -16,11 +16,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class RankingActivity extends AppCompatActivity {
+    final LoadingDialog loadingDialog = new LoadingDialog(RankingActivity.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking);
+        loadingDialog.startLoadingDialog();
+        //PETICION A LA BD
         List<User> userList = new LinkedList<>();
         User primero = new User("anas", 3);
         User segundo = new User("pepito", 1);
@@ -28,27 +31,25 @@ public class RankingActivity extends AppCompatActivity {
         userList.add(segundo);
         TableLayout lista = findViewById(R.id.RankingTable);
         TableRow row = new TableRow(getBaseContext());
-        TextView textView;
+        TextView textViewUser;
+        TextView textViewExp;
         for (int i=0; i < userList.size(); i++){
-            textView = new TextView(getBaseContext());
-            textView.setGravity(Gravity.CENTER_VERTICAL);
-            textView.setPadding(15,15,15,15);
-            textView.setBackgroundResource(R.color.colorPrimary);
-            textView.setText(userList.get(i).getId()+"-->"+userList.get(i).getExp());
-            textView.setTextColor(Color.WHITE);
-            row.addView(textView);
+            textViewUser = new TextView(getBaseContext());
+            textViewUser.setGravity(Gravity.CENTER_VERTICAL);
+            textViewUser.setPadding(15,15,15,15);
+            textViewUser.setBackgroundResource(R.color.colorPrimary);
+            textViewUser.setText(userList.get(i).getId());
+            textViewUser.setTextColor(Color.WHITE);
+            row.addView(textViewUser);
+            textViewExp = new TextView(getBaseContext());
+            textViewExp.setGravity(Gravity.CENTER_VERTICAL);
+            textViewExp.setPadding(15,15,15,15);
+            textViewExp.setBackgroundResource(R.color.colorPrimary);
+            textViewExp.setText(userList.get(i).getId());
+            textViewExp.setTextColor(Color.WHITE);
+            row.addView(textViewExp);
         }
         lista.addView(row);
-
-        for (int i=0; i < userList.size(); i++){
-            textView = new TextView(getBaseContext());
-            textView.setGravity(Gravity.CENTER_VERTICAL);
-            textView.setPadding(15,15,15,15);
-            textView.setBackgroundResource(R.color.colorPrimary);
-            textView.setText(userList.get(i).getId());
-            textView.setTextColor(Color.WHITE);
-            row.addView(textView);
-        }
-        lista.addView(row);
+        loadingDialog.dismissDialog();
     }
 }

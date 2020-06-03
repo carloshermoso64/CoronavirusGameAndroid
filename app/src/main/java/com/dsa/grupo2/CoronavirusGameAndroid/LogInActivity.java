@@ -26,11 +26,14 @@ public class LogInActivity extends AppCompatActivity {
 
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor;
+    final LoadingDialog loadingDialog = new LoadingDialog(LogInActivity.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        loadingDialog.startLoadingDialog();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
+        loadingDialog.dismissDialog();
 
         textUser = findViewById(R.id.textUsername);
         textPassword = findViewById(R.id.textPassword);
@@ -43,11 +46,13 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     public void logIn(View v) {
+        loadingDialog.startLoadingDialog();
         Credentials cred = new Credentials();
         cred.setName(textUser.getEditText().getText().toString());
         cred.setPassword(textPassword.getEditText().getText().toString());
 
         Call<String> login = service.logIn(cred);
+
         login.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
@@ -59,10 +64,15 @@ public class LogInActivity extends AppCompatActivity {
                     editor.commit();
                     startActivity(new Intent(context, MenuActivity.class));
                 }
+                else{
+                    Toast.makeText(context,"Login Failed",Toast.LENGTH_LONG).show();
+                }
+                loadingDialog.dismissDialog();
             }
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 Toast.makeText(context, "Error", Toast.LENGTH_LONG).show();
+                loadingDialog.dismissDialog();
             }
         });
     }
