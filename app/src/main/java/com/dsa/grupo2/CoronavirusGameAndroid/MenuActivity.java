@@ -32,4 +32,9 @@ public class MenuActivity extends AppCompatActivity {
         loadingDialog.dismissDialog();
         startActivity(intent);
     }
+
+    public void openForumActivity(View v) {
+        Intent intent = new Intent(this,ForumActivity.class);
+        startActivity(intent);
+    }
 }

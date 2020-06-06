@@ -56,11 +56,12 @@ public class LogInActivity extends AppCompatActivity {
         login.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                Toast.makeText(context, "Arreglado", Toast.LENGTH_LONG).show();
                 if (response.code() == 201) {
                     String token = response.body();
                     ApiConn.getInstace().setUserToken(token);
+                    ApiConn.getInstace().setUsername(textUser.getEditText().getText().toString());
                     editor.putString("token", token);
+                    editor.putString("name", textUser.getEditText().getText().toString());
                     editor.commit();
                     startActivity(new Intent(context, MenuActivity.class));
                 }

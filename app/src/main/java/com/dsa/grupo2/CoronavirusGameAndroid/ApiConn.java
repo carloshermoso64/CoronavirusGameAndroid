@@ -1,5 +1,6 @@
 package com.dsa.grupo2.CoronavirusGameAndroid;
 
+import com.dsa.grupo2.CoronavirusGameAndroid.services.ForumService;
 import com.dsa.grupo2.CoronavirusGameAndroid.services.UserService;
 
 import okhttp3.Interceptor;
@@ -15,8 +16,11 @@ public class ApiConn {
     private HttpLoggingInterceptor interceptor;
     private OkHttpClient client;
     private Retrofit retrofit;
+
     private UserService userService;
+    private ForumService forumService;
     private String userToken;
+    private String username;
 
     public static ApiConn getInstace() {
         if (instace == null)
@@ -40,6 +44,7 @@ public class ApiConn {
                 .build();
 
         this.userService = retrofit.create(UserService.class);
+        this.forumService = retrofit.create(ForumService.class);
     }
 
     public String getUserToken() {
@@ -52,5 +57,17 @@ public class ApiConn {
 
     public UserService getUserService() {
         return userService;
+    }
+
+    public ForumService getForumService() {
+        return forumService;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
