@@ -37,7 +37,7 @@ public class ApiConn {
                 .addInterceptor(interceptor)
                 .build();
         this.retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8080/dsaApp/")
+                .baseUrl("http://localhost:8080/dsaApp/")
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
