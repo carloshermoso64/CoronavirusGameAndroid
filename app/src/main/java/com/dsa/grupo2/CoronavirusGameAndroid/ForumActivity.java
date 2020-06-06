@@ -48,52 +48,13 @@ public class ForumActivity extends AppCompatActivity {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Call<List<Message>> messageCall = forumService.getAllMessages();
-
-                messageCall.enqueue(new Callback<List<Message>>() {
-                    @Override
-                    public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
-                        if (response.code() == 201) {
-                            messages.clear();
-                            messages.addAll(response.body()) ;
-                            forumAdapter.notifyDataSetChanged();
-                            refreshLayout.setRefreshing(false);
-                        }
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<Message>> call, Throwable t) {
-
-                    }
-                });
-
+                refreshMessages();
+                messagesViewer.scrollToPosition(messages.size()-1);
             }
         });
         messagesViewer.setVisibility(View.GONE);
         loading.setVisibility(View.VISIBLE);
-
-        Call<List<Message>> messageCall = forumService.getAllMessages();
-
-        messageCall.enqueue(new Callback<List<Message>>() {
-            @Override
-            public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
-                if (response.code() == 201) {
-                    messages = (ArrayList<Message>) response.body();
-                    layoutManager = new LinearLayoutManager(getApplicationContext());
-                    messagesViewer.setLayoutManager(layoutManager);
-                    forumAdapter = new ForumAdapter(messages);
-                    messagesViewer.setAdapter(forumAdapter);
-                    messagesViewer.setVisibility(View.VISIBLE);
-                    loading.setVisibility(View.GONE);
-                }
-
-            }
-            @Override
-            public void onFailure(Call<List<Message>> call, Throwable t) {
-
-            }
-        });
+        loadMessagesOnView();
     }
 
     public void sendMessage(View v) {
@@ -112,6 +73,8 @@ public class ForumActivity extends AppCompatActivity {
                 public void onResponse(Call call, Response response) {
                     if (response.code() == 201)
                         Toast.makeText(getApplicationContext(), "Mensaje Enviado", Toast.LENGTH_LONG).show();
+                    preparedMessage.setText("");
+                    loadMessagesOnView();
                 }
 
                 @Override
@@ -120,6 +83,55 @@ public class ForumActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    public void loadMessagesOnView() {
+        Call<List<Message>> messageCall = forumService.getAllMessages();
+
+        messageCall.enqueue(new Callback<List<Message>>() {
+            @Override
+            public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
+                if (response.code() == 201) {
+
+                    messages = (ArrayList<Message>) response.body();
+                    layoutManager = new LinearLayoutManager(getApplicationContext());
+                    messagesViewer.setLayoutManager(layoutManager);
+                    forumAdapter = new ForumAdapter(messages);
+                    messagesViewer.setAdapter(forumAdapter);
+                    messagesViewer.scrollToPosition(messages.size()-1);
+                    messagesViewer.setVisibility(View.VISIBLE);
+                    loading.setVisibility(View.GONE);
+
+                }
+
+            }
+            @Override
+            public void onFailure(Call<List<Message>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void refreshMessages() {
+        Call<List<Message>> messageCall = forumService.getAllMessages();
+
+        messageCall.enqueue(new Callback<List<Message>>() {
+            @Override
+            public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
+                if (response.code() == 201) {
+                    messages.clear();
+                    messages.addAll(response.body());
+                    forumAdapter.notifyDataSetChanged();
+                    messagesViewer.scrollToPosition(messages.size()-1);
+                    refreshLayout.setRefreshing(false);
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Message>> call, Throwable t) {
+
+            }
+        });
+
     }
 
 }
