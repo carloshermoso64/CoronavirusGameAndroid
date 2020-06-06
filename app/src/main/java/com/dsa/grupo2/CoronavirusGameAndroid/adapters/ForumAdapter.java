@@ -8,26 +8,58 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.dsa.grupo2.CoronavirusGameAndroid.ApiConn;
 import com.dsa.grupo2.CoronavirusGameAndroid.R;
 import com.dsa.grupo2.CoronavirusGameAndroid.models.Message;
 
 import java.util.List;
 
-public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ViewHolder> {
+public class ForumAdapter extends RecyclerView.Adapter {
     private List<Message> messages;
+    public int messageSent = 0;
+    public int messageReceived = 1;
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ReceivedViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView txtName;
         public TextView txtMessage;
         public View layout;
 
-        public ViewHolder(View v) {
+        public ReceivedViewHolder(View v) {
             super(v);
             layout = v;
-            txtName = (TextView) v.findViewById(R.id.nameText);
-            txtMessage = (TextView) v.findViewById(R.id.messageText);
+            txtName = (TextView) v.findViewById(R.id.textReceivedName);
+            txtMessage = (TextView) v.findViewById(R.id.textReceivedContent);
         }
+
+        void bind(Message message) {
+            txtName.setText(message.getUsername());
+            txtMessage.setText(message.getContent());
+        }
+    }
+
+    public class SentViewHolder extends RecyclerView.ViewHolder {
+        public TextView txtMessage;
+        public View layout;
+
+        public SentViewHolder(View v) {
+            super(v);
+            layout = v;
+            txtMessage = (TextView) v.findViewById(R.id.sentMessageContent);
+        }
+
+        void bind(Message message) {
+            txtMessage.setText(message.getContent());
+        }
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        Message msg = messages.get(position);
+        if (msg.getUsername().equals(ApiConn.getInstace().getUsername()))
+            return messageSent;
+        else
+            return messageReceived;
     }
 
     public void add(int position, Message item) {
@@ -44,23 +76,33 @@ public class ForumAdapter extends RecyclerView.Adapter<ForumAdapter.ViewHolder> 
         messages = myDataset;
     }
 
+    @NonNull
     @Override
-    public ForumAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // create a new view
-        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View v = inflater.inflate(R.layout.forum_message_layout, parent, false);
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view;
+
+        if (viewType == messageSent) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.sent_message_row, parent, false);
+            return new SentViewHolder(view);
+        }
+        else if (viewType == messageReceived) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.message_received_row, parent, false);
+            return new ReceivedViewHolder(view);
+        }
+
+        return null;
     }
 
     @Override
-    public void onBindViewHolder(ForumAdapter.ViewHolder holder, final int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-        final Message message = messages.get(position);
-        holder.txtName.setText(message.getUsername());
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        Message message = messages.get(position);
 
-        holder.txtMessage.setText(message.getContent());
+        if (holder.getItemViewType() == messageSent) {
+            ((SentViewHolder) holder).bind(message);
+        }
+        else if (holder.getItemViewType() == messageReceived) {
+            ((ReceivedViewHolder) holder).bind(message);
+        }
     }
 
     @Override
