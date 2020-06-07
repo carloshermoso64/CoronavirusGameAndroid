@@ -32,11 +32,14 @@ public class EditProfileActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     public String currentId;
+    final LoadingDialog loadingDialog= new LoadingDialog(EditProfileActivity.this);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
+        loadingDialog.startLoadingDialog();
         TextView level =findViewById(R.id.levelTextView);
         TextView exp = findViewById(R.id.expTextView);
         ImageView avatar = findViewById(R.id.avatarImageView);
@@ -51,7 +54,8 @@ public class EditProfileActivity extends AppCompatActivity {
         editTextUsername.setVisibility(View.GONE);
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         Context context = getApplicationContext();
-        refreshUserData("anas",level,exp,avatar,context);
+        refreshUserData("admin",level,exp,avatar,context);
+        loadingDialog.dismissDialog();
 
 
         changeDataBtn.setOnClickListener(new View.OnClickListener() {
@@ -67,22 +71,26 @@ public class EditProfileActivity extends AppCompatActivity {
         commitChangesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                loadingDialog.startLoadingDialog();
                 User u = new User(editTextUsername.getText().toString(), editTextEmail.getText().toString(), editTextPassword.getText().toString());
-                Call<User> newUser = ApiConn.getInstace().getUserService().updateUser(u.getName(),u.getEmail(),u.getPassword(),"z16q53nq");
+                Call<User> newUser = ApiConn.getInstace().getUserService().updateUser(u,"admin");
                 newUser.enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         if (response.code()==201) {
                             User u = response.body();
                             refreshUserData(u.getName(),level,exp,avatar,context);
+                            loadingDialog.dismissDialog();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<User> call, Throwable t) {
                         Toast.makeText(EditProfileActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                        loadingDialog.dismissDialog();
                     }
                 });
+                loadingDialog.dismissDialog();
             }
         });
 

@@ -25,7 +25,6 @@ public interface UserService {
 
     @GET("user/{name}") Call<User> getUser(@Path("name") String name);
 
-    @PUT("/user/{id}")
-    @FormUrlEncoded
-    Call<User> updateUser(@Field ("name") String name,@Field("email") String email,@Field("password")String password,@Path(value="id",encoded=true) String oldId);
+    @PUT("user/{id}")
+    Call<User> updateUser(@Body User user,@Path(value="id",encoded=true) String oldId);
 }
