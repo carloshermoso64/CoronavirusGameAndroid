@@ -18,6 +18,7 @@ public class MenuActivity extends AppCompatActivity {
         final Button historybtn = (Button) findViewById(R.id.HistoryBurron);
         final Button rankingbtn = (Button) findViewById(R.id.RankingButton);
         final Button storebtn = (Button) findViewById(R.id.StoreButton);
+        final Button editProfileBtn = findViewById(R.id.buttonEditProfile);
 
         rankingbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -26,10 +27,26 @@ public class MenuActivity extends AppCompatActivity {
                 openRankingActivity();
             }
         });
+
+        editProfileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadingDialog.startLoadingDialog();
+                openEditProfile();
+            }
+        });
+
     }
     public void openRankingActivity(){
         Intent intent = new Intent(this,RankingActivity.class);
         loadingDialog.dismissDialog();
         startActivity(intent);
     }
+    public void openEditProfile(){
+        loadingDialog.dismissDialog();
+        startActivity(new Intent(this,EditProfileActivity.class));
+    }
+
+
+
 }
