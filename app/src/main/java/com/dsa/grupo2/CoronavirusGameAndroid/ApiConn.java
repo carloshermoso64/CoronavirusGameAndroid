@@ -1,5 +1,6 @@
 package com.dsa.grupo2.CoronavirusGameAndroid;
 
+import com.dsa.grupo2.CoronavirusGameAndroid.services.BestLevelService;
 import com.dsa.grupo2.CoronavirusGameAndroid.services.UserService;
 
 import okhttp3.Interceptor;
@@ -16,6 +17,7 @@ public class ApiConn {
     private OkHttpClient client;
     private Retrofit retrofit;
     private UserService userService;
+    private BestLevelService bestLevelService;
     private String userToken;
 
     public static ApiConn getInstace() {
@@ -40,6 +42,7 @@ public class ApiConn {
                 .build();
 
         this.userService = retrofit.create(UserService.class);
+        this.bestLevelService = retrofit.create(BestLevelService.class);
     }
 
     public String getUserToken() {
@@ -52,5 +55,8 @@ public class ApiConn {
 
     public UserService getUserService() {
         return userService;
+    }
+    public BestLevelService getBestLevelService() {
+        return bestLevelService;
     }
 }

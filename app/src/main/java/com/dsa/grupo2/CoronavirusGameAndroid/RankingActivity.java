@@ -1,55 +1,92 @@
 package com.dsa.grupo2.CoronavirusGameAndroid;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
-import android.graphics.Color;
+import android.app.TaskStackBuilder;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.View;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
+import android.widget.Adapter;
+import android.widget.Toast;
 
-import com.dsa.grupo2.CoronavirusGameAndroid.models.User;
+import com.dsa.grupo2.CoronavirusGameAndroid.models.BestLevel;
+import com.dsa.grupo2.CoronavirusGameAndroid.services.BestLevelService;
+import com.google.android.material.tabs.TabItem;
+import com.google.android.material.tabs.TabLayout;
 
-import java.util.LinkedList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RankingActivity extends AppCompatActivity {
     final LoadingDialog loadingDialog = new LoadingDialog(RankingActivity.this);
+
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private TabItem tabUserLevels, tabGlobalLevels, tabUsers;
+    private RankingPageAdapter rankingPageAdapter;
+
+    private BestLevelService bestLevelService;
+
+    private Context context;
+
+    private List<BestLevel> bestLevelList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking);
         loadingDialog.startLoadingDialog();
-        //PETICION A LA BD
-        List<User> userList = new LinkedList<>();
-        User primero = new User("anas", 3);
-        User segundo = new User("pepito", 1);
-        userList.add(primero);
-        userList.add(segundo);
-        TableLayout lista = findViewById(R.id.RankingTable);
-        TableRow row = new TableRow(getBaseContext());
-        TextView textViewUser;
-        TextView textViewExp;
-        for (int i=0; i < userList.size(); i++){
-            textViewUser = new TextView(getBaseContext());
-            textViewUser.setGravity(Gravity.CENTER_VERTICAL);
-            textViewUser.setPadding(15,15,15,15);
-            textViewUser.setBackgroundResource(R.color.colorPrimary);
-            textViewUser.setText(userList.get(i).getId());
-            textViewUser.setTextColor(Color.WHITE);
-            row.addView(textViewUser);
-            textViewExp = new TextView(getBaseContext());
-            textViewExp.setGravity(Gravity.CENTER_VERTICAL);
-            textViewExp.setPadding(15,15,15,15);
-            textViewExp.setBackgroundResource(R.color.colorPrimary);
-            textViewExp.setText(userList.get(i).getId());
-            textViewExp.setTextColor(Color.WHITE);
-            row.addView(textViewExp);
-        }
-        lista.addView(row);
+
+        context = getApplicationContext();
+
+        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        tabUserLevels = (TabItem) findViewById(R.id.tabUserLevels);
+        tabGlobalLevels = (TabItem) findViewById(R.id.tabGlobalLevels);
+        tabUsers = (TabItem) findViewById(R.id.tabUsers);
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
+
+        rankingPageAdapter = new RankingPageAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), context);
+        viewPager.setAdapter(rankingPageAdapter);
+
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                if (tab.getPosition()==0){
+                    rankingPageAdapter.notifyDataSetChanged();
+                }else if (tab.getPosition()==1){
+                    rankingPageAdapter.notifyDataSetChanged();
+                }else if(tab.getPosition()==2){
+                    rankingPageAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+
         loadingDialog.dismissDialog();
     }
+
 }

@@ -19,29 +19,53 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/logo" />
 
-    <TableLayout
-        android:id="@+id/RankingTable"
-        android:layout_width="306dp"
-        android:layout_height="468dp"
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView7"
+        tools:ignore="MissingConstraints">
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7">
+        app:layout_constraintTop_toBottomOf="@+id/imageView7"
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabUserLevels"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My levels" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabGlobalLevels"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Global levels" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabUsers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Users" />
+    </com.google.android.material.tabs.TabLayout>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </TableLayout>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="411dp"
+        android:layout_height="473dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleList"
+            android:layout_width="0dp"
+            android:layout_height="0dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </androidx.viewpager.widget.ViewPager>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
