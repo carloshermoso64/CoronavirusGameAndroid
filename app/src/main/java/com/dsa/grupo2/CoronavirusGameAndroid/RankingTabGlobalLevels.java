@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link RankingTabGlobalLevels#newInstance} factory method to
@@ -23,6 +25,10 @@ public class RankingTabGlobalLevels extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
 
     public RankingTabGlobalLevels() {
         // Required empty public constructor
@@ -59,6 +65,8 @@ public class RankingTabGlobalLevels extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tab_global_levels, container, false);
+        View view = inflater.inflate(R.layout.fragment_tab_global_levels, container, false);
+        recyclerView = view.findViewById(R.id.recycleList);
+        return view;
     }
 }

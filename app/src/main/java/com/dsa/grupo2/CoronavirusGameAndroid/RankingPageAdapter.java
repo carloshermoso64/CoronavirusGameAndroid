@@ -1,6 +1,7 @@
 package com.dsa.grupo2.CoronavirusGameAndroid;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -9,12 +10,10 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 public class RankingPageAdapter extends FragmentPagerAdapter {
     private int tabNumber;
-    private Context context;
 
-    public RankingPageAdapter(@NonNull FragmentManager fm, int tabNumber, Context context) {
+    public RankingPageAdapter(@NonNull FragmentManager fm, int tabNumber) {
         super(fm);
         this.tabNumber= tabNumber;
-        this.context = context;
     }
 
     @NonNull
@@ -25,9 +24,10 @@ public class RankingPageAdapter extends FragmentPagerAdapter {
                 return new RankingTabUserLevels();
             case 1:
                 return new RankingTabGlobalLevels();
-            case 3:
+            case 2:
                 return new RankingTabUsers();
             default:
+                Log.d("","FRAGMENT MANAGER RETURNS NULL!!!! RankingPageAdapter.java (30)");
                 return null;
         }
     }
@@ -41,6 +41,4 @@ public class RankingPageAdapter extends FragmentPagerAdapter {
     public int getItemPosition(@NonNull Object object) {
         return POSITION_NONE;
     }
-
-    public Context getContext(){return this.context;};
 }

@@ -15,11 +15,14 @@ import android.widget.Toast;
 import com.dsa.grupo2.CoronavirusGameAndroid.models.BestLevel;
 import com.dsa.grupo2.CoronavirusGameAndroid.services.BestLevelService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,11 +42,17 @@ public class RankingTabUserLevels extends Fragment {
 
     private BestLevelService bestLevelService;
 
-    private List<BestLevel> bestLevelList;
+    private List<BestLevel> bestLevelList = new ArrayList<>();
 
     private Context context;
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
+
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+
+    private View view;
 
     public RankingTabUserLevels() {
         // Required empty public constructor
@@ -75,6 +84,9 @@ public class RankingTabUserLevels extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
+        context = getActivity();
+
+
         sharedPref = context.getSharedPreferences("coronavirusgame", Context.MODE_PRIVATE);
         editor = sharedPref.edit();
 
@@ -105,23 +117,28 @@ public class RankingTabUserLevels extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tab_user_levels, container, false);
-    }
+        view = inflater.inflate(R.layout.fragment_tab_user_levels, container, false);
 
-    private void loadResult(){
-        recyclerView = findViewById(R.id.recycleList);
-
+        recyclerView = view.findViewById(R.id.recycleList);
         // use this setting to
         // improve performance if you know that changes
         // in content do not change the layout size
         // of the RecyclerView
         recyclerView.setHasFixedSize(true);
         // use a linear layout manager
-        layoutManager = new LinearLayoutManager(this);
+        layoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(layoutManager);
 
         mAdapter = new MyAdapterRanking(bestLevelList);
         recyclerView.setAdapter(mAdapter);
+
+        return view;
+    }
+
+    private void loadResult(){
+        mAdapter = new MyAdapterRanking(bestLevelList);
+        recyclerView.setAdapter(mAdapter);
+
     }
 
 }

@@ -2,7 +2,7 @@ package com.dsa.grupo2.CoronavirusGameAndroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
@@ -28,20 +28,10 @@ import retrofit2.Response;
 public class RankingActivity extends AppCompatActivity {
     final LoadingDialog loadingDialog = new LoadingDialog(RankingActivity.this);
 
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
-
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private TabItem tabUserLevels, tabGlobalLevels, tabUsers;
     private RankingPageAdapter rankingPageAdapter;
-
-    private BestLevelService bestLevelService;
-
-    private Context context;
-
-    private List<BestLevel> bestLevelList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,15 +39,13 @@ public class RankingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ranking);
         loadingDialog.startLoadingDialog();
 
-        context = getApplicationContext();
-
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         tabUserLevels = (TabItem) findViewById(R.id.tabUserLevels);
         tabGlobalLevels = (TabItem) findViewById(R.id.tabGlobalLevels);
         tabUsers = (TabItem) findViewById(R.id.tabUsers);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
 
-        rankingPageAdapter = new RankingPageAdapter(getSupportFragmentManager(), tabLayout.getTabCount(), context);
+        rankingPageAdapter = new RankingPageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(rankingPageAdapter);
 
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -79,7 +67,13 @@ public class RankingActivity extends AppCompatActivity {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
+                if (tab.getPosition()==0){
+                    rankingPageAdapter.notifyDataSetChanged();
+                }else if (tab.getPosition()==1){
+                    rankingPageAdapter.notifyDataSetChanged();
+                }else if(tab.getPosition()==2){
+                    rankingPageAdapter.notifyDataSetChanged();
+                }
             }
         });
 
