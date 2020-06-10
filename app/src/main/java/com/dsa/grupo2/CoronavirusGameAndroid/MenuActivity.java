@@ -43,14 +43,14 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-<<<<<<< HEAD
+
     public void openForumActivity(View v) {
-        Intent intent = new Intent(this,ForumActivity.class);
-=======
+        Intent intent = new Intent(this, ForumActivity.class);
+        startActivity(intent);
+    }
     public void openShopActivity(){
         Intent intent = new Intent(this,ShopActivity.class);
         loadingDialog.dismissDialog();
->>>>>>> minimo2-carlos
         startActivity(intent);
     }
 }

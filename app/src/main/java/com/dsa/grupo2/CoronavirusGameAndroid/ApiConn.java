@@ -32,8 +32,6 @@ public class ApiConn {
 
     private String userToken;
     private String username;
-
-    private String username;
     private String userId;
 
     public static ApiConn getInstace() {

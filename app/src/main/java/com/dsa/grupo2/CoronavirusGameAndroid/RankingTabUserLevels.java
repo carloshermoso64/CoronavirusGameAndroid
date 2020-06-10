@@ -91,7 +91,7 @@ public class RankingTabUserLevels extends Fragment {
         editor = sharedPref.edit();
 
         bestLevelService = ApiConn.getInstace().getBestLevelService();
-        Call<List<BestLevel>> userScores = bestLevelService.userScores("pep");//CAMBIAR!!!!!!!!!
+        Call<List<BestLevel>> userScores = bestLevelService.userScores(ApiConn.getInstace().getUsername());//CAMBIAR!!!!!!!!!
 
         userScores.enqueue(new Callback<List<BestLevel>>() {
             @Override
