@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,14 +19,16 @@ public class MyAdapterRanking extends RecyclerView.Adapter<MyAdapterRanking.View
     public class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView score;
+        public TextView time;
         public View layout;
         public TextView numeroNivel;
 
         public ViewHolder(View v) {
             super(v);
             layout = v;
-            score = (TextView) v.findViewById(R.id.rowNameTextRanking);
+            score = (TextView) v.findViewById(R.id.scoreRanking);
             numeroNivel = (TextView) v.findViewById(R.id.nivelRanking);
+            time = (TextView) v.findViewById(R.id.timeRanking);
         }
     }
 
@@ -63,6 +64,9 @@ public class MyAdapterRanking extends RecyclerView.Adapter<MyAdapterRanking.View
 
         final int levelNumber = values.get(position).getLevelNumber();
         holder.numeroNivel.setText(String.valueOf(levelNumber));
+
+        final int bestTime = values.get(position).getBestTime();
+        holder.time.setText(String.valueOf(bestTime));
 
         Context context = holder.numeroNivel.getContext();
     }

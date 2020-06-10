@@ -138,7 +138,6 @@ public class RankingTabUserLevels extends Fragment {
     private void loadResult(){
         mAdapter = new MyAdapterRanking(bestLevelList);
         recyclerView.setAdapter(mAdapter);
-
     }
 
 }
