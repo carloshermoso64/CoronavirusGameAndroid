@@ -38,22 +38,13 @@
         app:layout_constraintVertical_bias="0.58000004" />
 
     <Button
-        android:id="@+id/HistoryBurron"
-        android:layout_width="400dp"
-        android:layout_height="60dp"
-        android:text="History"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PlayButton" />
-
-    <Button
         android:id="@+id/RankingButton"
         android:layout_width="400dp"
         android:layout_height="60dp"
-        android:text="RANKING"
+        android:text="Stats"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/HistoryBurron" />
+        app:layout_constraintTop_toBottomOf="@+id/PlayButton" />
 
     <Button
         android:id="@+id/StoreButton"

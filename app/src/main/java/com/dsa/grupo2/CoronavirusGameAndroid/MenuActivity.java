@@ -15,7 +15,6 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         final Button playbtn = (Button) findViewById(R.id.PlayButton);
-        final Button historybtn = (Button) findViewById(R.id.HistoryBurron);
         final Button rankingbtn = (Button) findViewById(R.id.RankingButton);
         final Button storebtn = (Button) findViewById(R.id.StoreButton);
 
