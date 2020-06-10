@@ -18,6 +18,7 @@
 
         <activity android:name=".ShopActivity"></activity>
 
+        <activity android:name=".EditProfileActivity"></activity>
         <activity android:name=".MenuActivity" />
         <activity android:name=".RankingActivity" />
         <activity android:name=".LogInActivity" />

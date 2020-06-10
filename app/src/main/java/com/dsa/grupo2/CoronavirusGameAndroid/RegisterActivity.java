@@ -1,6 +1,8 @@
 package com.dsa.grupo2.CoronavirusGameAndroid;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -32,6 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
 
     final LoadingDialog loadingDialog = new LoadingDialog(RegisterActivity.this);
+    com.dsa.grupo2.CoronavirusGameAndroid.models.User u;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +52,11 @@ public class RegisterActivity extends AppCompatActivity {
         sharedPref = context.getSharedPreferences("coronavirusgame", Context.MODE_PRIVATE);
         editor = sharedPref.edit();
 
+
     }
 
     public void register(View v) {
         loadingDialog.startLoadingDialog();
-        User u = new User();
         u.setName(textUser.getEditText().getText().toString());
         u.setPassword(textPassword.getEditText().getText().toString());
         u.setEmail(textEmail.getEditText().getText().toString());

@@ -17,6 +17,7 @@ public class MenuActivity extends AppCompatActivity {
         final Button playbtn = (Button) findViewById(R.id.PlayButton);
         final Button rankingbtn = (Button) findViewById(R.id.RankingButton);
         final Button storebtn = (Button) findViewById(R.id.StoreButton);
+        final Button editProfileBtn = findViewById(R.id.buttonEditProfile);
 
 
 
@@ -35,6 +36,14 @@ public class MenuActivity extends AppCompatActivity {
                 openShopActivity();;
             }
         });
+        editProfileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadingDialog.startLoadingDialog();
+                openEditProfile();
+            }
+        });
+
     }
     public void openRankingActivity(){
         Intent intent = new Intent(this,RankingActivity.class);
@@ -52,4 +61,11 @@ public class MenuActivity extends AppCompatActivity {
         loadingDialog.dismissDialog();
         startActivity(intent);
     }
+    public void openEditProfile(){
+        loadingDialog.dismissDialog();
+        startActivity(new Intent(this,EditProfileActivity.class));
+    }
+
+
+
 }
