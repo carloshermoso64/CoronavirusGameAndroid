@@ -95,7 +95,9 @@ public class RegisterActivity extends AppCompatActivity {
                 if (response.code() == 201) {
                     String token = response.body();
                     ApiConn.getInstace().setUserToken(token);
+                    ApiConn.getInstace().setUsername(name);
                     editor.putString("token", token);
+                    editor.putString("name", name);
                     editor.commit();
                     startActivity(new Intent(context, MenuActivity.class));
                 }
@@ -107,4 +109,3 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 }
-

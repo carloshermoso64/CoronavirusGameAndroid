@@ -1,5 +1,6 @@
 package com.dsa.grupo2.CoronavirusGameAndroid;
 
+import com.dsa.grupo2.CoronavirusGameAndroid.services.ShopService;
 import com.dsa.grupo2.CoronavirusGameAndroid.services.UserService;
 
 import okhttp3.Interceptor;
@@ -15,8 +16,13 @@ public class ApiConn {
     private HttpLoggingInterceptor interceptor;
     private OkHttpClient client;
     private Retrofit retrofit;
+
     private UserService userService;
+    private ShopService shopService;
     private String userToken;
+
+    private String username;
+    private String userId;
 
     public static ApiConn getInstace() {
         if (instace == null)
@@ -33,13 +39,14 @@ public class ApiConn {
                 .addInterceptor(interceptor)
                 .build();
         this.retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8080/dsaApp/")
+                .baseUrl("http://147.83.7.204:8080/dsaApp/")
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
 
         this.userService = retrofit.create(UserService.class);
+        this.shopService = retrofit.create(ShopService.class);
     }
 
     public String getUserToken() {
@@ -52,5 +59,29 @@ public class ApiConn {
 
     public UserService getUserService() {
         return userService;
+    }
+
+    public ShopService getShopService() {
+        return shopService;
+    }
+
+    public void setShopService(ShopService shopService) {
+        this.shopService = shopService;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

@@ -19,6 +19,8 @@ public class MenuActivity extends AppCompatActivity {
         final Button rankingbtn = (Button) findViewById(R.id.RankingButton);
         final Button storebtn = (Button) findViewById(R.id.StoreButton);
 
+
+
         rankingbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -26,9 +28,23 @@ public class MenuActivity extends AppCompatActivity {
                 openRankingActivity();
             }
         });
+
+        storebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                loadingDialog.startLoadingDialog();
+                openShopActivity();;
+            }
+        });
     }
     public void openRankingActivity(){
         Intent intent = new Intent(this,RankingActivity.class);
+        loadingDialog.dismissDialog();
+        startActivity(intent);
+    }
+
+    public void openShopActivity(){
+        Intent intent = new Intent(this,ShopActivity.class);
         loadingDialog.dismissDialog();
         startActivity(intent);
     }
