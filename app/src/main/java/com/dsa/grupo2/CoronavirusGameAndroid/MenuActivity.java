@@ -19,11 +19,21 @@ public class MenuActivity extends AppCompatActivity {
         final Button rankingbtn = (Button) findViewById(R.id.RankingButton);
         final Button storebtn = (Button) findViewById(R.id.StoreButton);
 
+
+
         rankingbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 loadingDialog.startLoadingDialog();
                 openRankingActivity();
+            }
+        });
+
+        storebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                loadingDialog.startLoadingDialog();
+                openShopActivity();;
             }
         });
     }
@@ -33,8 +43,14 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+<<<<<<< HEAD
     public void openForumActivity(View v) {
         Intent intent = new Intent(this,ForumActivity.class);
+=======
+    public void openShopActivity(){
+        Intent intent = new Intent(this,ShopActivity.class);
+        loadingDialog.dismissDialog();
+>>>>>>> minimo2-carlos
         startActivity(intent);
     }
 }

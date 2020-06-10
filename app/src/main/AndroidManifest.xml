@@ -13,7 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+<<<<<<< HEAD
         <activity android:name=".ForumActivity"></activity>
+=======
+        <activity android:name=".ShopActivity"></activity>
+>>>>>>> minimo2-carlos
         <activity android:name=".MenuActivity" />
         <activity android:name=".RankingActivity" />
         <activity android:name=".LogInActivity" />
