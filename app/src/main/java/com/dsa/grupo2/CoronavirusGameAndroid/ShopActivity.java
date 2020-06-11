@@ -59,18 +59,23 @@ public class ShopActivity extends AppCompatActivity {
                     getGame.enqueue(new Callback<Game>() {
                         @Override
                         public void onResponse(Call<Game> call, Response<Game> response) {
-                            Game game = response.body();
-                            int cash = game.getCash();
-                            int lifes = game.getLifes();
-                            int neuron = game.getNeurons();
-                            String mask = game.getMask();
-                            if (mask.equals("TRUE")){
-                                checkBoxMask.setChecked(true);
+                            if (response.code() == 201) {
+                                Game game = response.body();
+                                int cash = game.getCash();
+                                int lifes = game.getLifes();
+                                int neuron = game.getNeurons();
+                                String mask = game.getMask();
+                                if (mask.equals("TRUE")) {
+                                    checkBoxMask.setChecked(true);
+                                }
+                                textLevel.setText(mask);
+                                textCash.setText(String.valueOf(cash));
+                                textOutputLifes.setText(String.valueOf(lifes));
+                                textOutputNeuron.setText(String.valueOf(neuron));
                             }
-                            textLevel.setText(mask);
-                            textCash.setText(String.valueOf(cash));
-                            textOutputLifes.setText(String.valueOf(lifes));
-                            textOutputNeuron.setText(String.valueOf(neuron));
+                            else{
+                                Toast.makeText(getApplicationContext(),"You must be registered to use the store",Toast.LENGTH_LONG).show();
+                            }
                         }
 
                         @Override
@@ -79,7 +84,9 @@ public class ShopActivity extends AppCompatActivity {
                         }
                     });
                 }
-
+                else{
+                    Toast.makeText(getApplicationContext(),"Coronavirus has entered our servers and the connection has been lost",Toast.LENGTH_LONG).show();
+                }
 
             }
 
