@@ -25,7 +25,6 @@ public class ForumAdapter extends RecyclerView.Adapter {
     DateFormat df = new SimpleDateFormat(pattern);
 
     public class ReceivedViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
         public TextView txtName;
         public TextView txtMessage;
         public TextView txtDate;

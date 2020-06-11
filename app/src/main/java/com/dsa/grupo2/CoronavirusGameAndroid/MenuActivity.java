@@ -66,6 +66,10 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(new Intent(this,EditProfileActivity.class));
     }
 
+    public void openLevelSelect(View v) {
+        startActivity(new Intent(this, SelectLevelActivity.class));
+    }
+
 
 
 }

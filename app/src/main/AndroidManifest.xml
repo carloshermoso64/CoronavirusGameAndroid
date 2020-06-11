@@ -13,11 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
+        <activity android:name=".SelectLevelActivity"></activity>
         <activity android:name=".ForumActivity" />
-
         <activity android:name=".ShopActivity" />
-
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".RankingActivity" />
