@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,21 +12,23 @@ import com.dsa.grupo2.CoronavirusGameAndroid.models.BestLevel;
 
 import java.util.List;
 
-public class MyAdapterRanking extends RecyclerView.Adapter<MyAdapterRanking.ViewHolder> {
+public class MyAdapterLocalRanking extends RecyclerView.Adapter<MyAdapterLocalRanking.ViewHolder> {
 
     private List<BestLevel> values;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView score;
+        public TextView time;
         public View layout;
         public TextView numeroNivel;
 
         public ViewHolder(View v) {
             super(v);
             layout = v;
-            score = (TextView) v.findViewById(R.id.rowNameTextRanking);
+            score = (TextView) v.findViewById(R.id.scoreRanking);
             numeroNivel = (TextView) v.findViewById(R.id.nivelRanking);
+            time = (TextView) v.findViewById(R.id.timeRanking);
         }
     }
 
@@ -41,16 +42,16 @@ public class MyAdapterRanking extends RecyclerView.Adapter<MyAdapterRanking.View
         notifyItemRemoved(position);
     }
 
-    public MyAdapterRanking(List<BestLevel> myDataset) {
+    public MyAdapterLocalRanking(List<BestLevel> myDataset) {
         values = myDataset;
         LayoutInflater inflater;
     }
 
     @Override
-    public MyAdapterRanking.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyAdapterLocalRanking.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View v = inflater.inflate(R.layout.itemlayout_ranking, parent, false);
+        View v = inflater.inflate(R.layout.itemlayout_userlevel_ranking, parent, false);
         // set the view's size, margins, paddings and layout parameters
         ViewHolder vh = new ViewHolder(v);
         return vh;
@@ -64,7 +65,8 @@ public class MyAdapterRanking extends RecyclerView.Adapter<MyAdapterRanking.View
         final int levelNumber = values.get(position).getLevelNumber();
         holder.numeroNivel.setText(String.valueOf(levelNumber));
 
-        Context context = holder.numeroNivel.getContext();
+        final int bestTime = values.get(position).getBestTime();
+        holder.time.setText(String.valueOf(bestTime));
     }
 
     @Override

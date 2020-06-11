@@ -96,10 +96,6 @@ public class ShopActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
     }
 
     public void buyNeuron(View v){
