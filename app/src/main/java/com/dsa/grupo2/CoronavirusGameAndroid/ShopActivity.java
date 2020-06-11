@@ -64,11 +64,12 @@ public class ShopActivity extends AppCompatActivity {
                                 int cash = game.getCash();
                                 int lifes = game.getLifes();
                                 int neuron = game.getNeurons();
+                                int level = game.getCompletedLevels();
                                 String mask = game.getMask();
                                 if (mask.equals("TRUE")) {
                                     checkBoxMask.setChecked(true);
                                 }
-                                textLevel.setText(mask);
+                                textLevel.setText(String.valueOf(level));
                                 textCash.setText(String.valueOf(cash));
                                 textOutputLifes.setText(String.valueOf(lifes));
                                 textOutputNeuron.setText(String.valueOf(neuron));
