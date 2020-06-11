@@ -61,9 +61,12 @@ public class LogInActivity extends AppCompatActivity {
                     String token = response.body();
                     ApiConn.getInstace().setUserToken(token);
                     ApiConn.getInstace().setUsername(textUser.getEditText().getText().toString());
+                    ApiConn.getInstace().setEmail("Enter your email again");
+                    ApiConn.getInstace().setPassword(textPassword.getEditText().getText().toString());
                     getUserId(textUser.getEditText().getText().toString());
                     editor.putString("token", token);
                     editor.putString("name", textUser.getEditText().getText().toString());
+                    editor.putString("password", textPassword.getEditText().getText().toString());
                     editor.commit();
                     startActivity(new Intent(context, MenuActivity.class));
                 }

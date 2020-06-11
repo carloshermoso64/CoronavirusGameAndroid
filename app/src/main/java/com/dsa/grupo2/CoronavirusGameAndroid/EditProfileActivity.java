@@ -54,8 +54,12 @@ public class EditProfileActivity extends AppCompatActivity {
         editTextUsername.setVisibility(View.GONE);
         recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         Context context = getApplicationContext();
-        refreshUserData("admin",level,exp,avatar,context);
+        refreshUserData(ApiConn.getInstace().getUsername(),level,exp,avatar,context);
         loadingDialog.dismissDialog();
+
+        editTextUsername.setText(ApiConn.getInstace().getUsername());
+        editTextPassword.setText(ApiConn.getInstace().getPassword());
+        editTextEmail.setText(ApiConn.getInstace().getEmail());
 
 
         changeDataBtn.setOnClickListener(new View.OnClickListener() {
@@ -73,7 +77,7 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onClick(View view) {
                 loadingDialog.startLoadingDialog();
                 User u = new User(editTextUsername.getText().toString(), editTextEmail.getText().toString(), editTextPassword.getText().toString());
-                Call<User> newUser = ApiConn.getInstace().getUserService().updateUser(u,"admin");
+                Call<User> newUser = ApiConn.getInstace().getUserService().updateUser(u,ApiConn.getInstace().getUserId());
                 newUser.enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {

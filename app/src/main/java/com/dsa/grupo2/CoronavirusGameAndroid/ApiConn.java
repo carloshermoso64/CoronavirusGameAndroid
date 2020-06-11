@@ -33,6 +33,8 @@ public class ApiConn {
     private String userToken;
     private String username;
     private String userId;
+    private String email;
+    private String password;
 
     public static ApiConn getInstace() {
         if (instace == null)
@@ -99,6 +101,22 @@ public class ApiConn {
     public BestLevelService getBestLevelService() {
         return bestLevelService;
 
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
 

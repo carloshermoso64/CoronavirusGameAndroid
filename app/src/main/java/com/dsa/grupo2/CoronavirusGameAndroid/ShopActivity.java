@@ -36,16 +36,16 @@ public class ShopActivity extends AppCompatActivity {
         final TextView textCash = (TextView) findViewById(R.id.textCash);
         final TextView textOutputLifes = (TextView) findViewById(R.id.textOutputLifes);
         final TextView textOutputNeuron = (TextView) findViewById(R.id.textOutputNeuron);
-        final TextView textLevel = (TextView) findViewById(R.id.textUsername);
+        final TextView textLevel = (TextView) findViewById(R.id.textLevel);
 
         final CheckBox checkBoxMask = (CheckBox) findViewById(R.id.checkBoxMask);
 
         shopService = ApiConn.getInstace().getShopService();
         username = ApiConn.getInstace().getUsername();
 
-        textUsername.setText(username);
-
         Call<User> getUser =  ApiConn.getInstace().getUserService().getUser(username);
+
+        textUsername.setText(username);
 
         getUser.enqueue(new Callback<User>() {
             @Override
@@ -69,8 +69,8 @@ public class ShopActivity extends AppCompatActivity {
                                 if (mask.equals("TRUE")) {
                                     checkBoxMask.setChecked(true);
                                 }
-                                textLevel.setText(String.valueOf(level));
-                                textCash.setText(String.valueOf(cash));
+                                textLevel.setText("Level: " + String.valueOf(level));
+                                textCash.setText(String.valueOf(cash) + "$");
                                 textOutputLifes.setText(String.valueOf(lifes));
                                 textOutputNeuron.setText(String.valueOf(neuron));
                             }
@@ -171,7 +171,7 @@ public class ShopActivity extends AppCompatActivity {
                 final TextView textOutputNeuron = (TextView) findViewById(R.id.textOutputNeuron);
                 final CheckBox checkBoxMask = (CheckBox) findViewById(R.id.checkBoxMask);
 
-                textCash.setText(String.valueOf(cash));
+                textCash.setText(String.valueOf(cash) + "$");
                 textOutputLifes.setText(String.valueOf(lifes));
                 textOutputNeuron.setText(String.valueOf(neuron));
                 if (mask.equals("TRUE")){
