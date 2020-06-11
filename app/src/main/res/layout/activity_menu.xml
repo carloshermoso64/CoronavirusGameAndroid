@@ -9,72 +9,90 @@
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/UserName"
+        android:layout_height="203dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/logo" />
+        app:srcCompat="@drawable/mainscreentitle" />
 
     <TextView
         android:id="@+id/UserName"
         android:layout_width="116dp"
         android:layout_height="60dp"
         android:text="User ID"
-        app:layout_constraintBottom_toTopOf="@+id/PlayButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <Button
         android:id="@+id/PlayButton"
-        android:layout_width="418dp"
-        android:layout_height="56dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/mainscreenbutton"
+        android:drawableLeft="@drawable/mainscreenplayicon"
         android:text="PLAY"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:drawablePadding="-110sp"
+        android:paddingLeft="120sp"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/RankingButton"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.58000004" />
+        app:layout_constraintStart_toStartOf="@+id/RankingButton"
+        app:layout_constraintTop_toBottomOf="@+id/UserName" />
 
     <Button
         android:id="@+id/RankingButton"
-        android:layout_width="400dp"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/mainscreenbutton"
+        android:drawableLeft="@drawable/mainscreenstatsbutton"
         android:text="Stats"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:drawablePadding="-110sp"
+        android:paddingLeft="120sp"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/StoreButton"
+        app:layout_constraintStart_toStartOf="@+id/StoreButton"
         app:layout_constraintTop_toBottomOf="@+id/PlayButton" />
 
     <Button
         android:id="@+id/StoreButton"
-        android:layout_width="400dp"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/mainscreenbutton"
+        android:drawableLeft="@drawable/mainscreenshopicon"
+        android:drawablePadding="-110sp"
+        android:paddingLeft="120sp"
         android:text="STORE"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/forumButton"
+        app:layout_constraintStart_toStartOf="@+id/forumButton"
         app:layout_constraintTop_toBottomOf="@+id/RankingButton" />
 
     <Button
         android:id="@+id/forumButton"
-        android:layout_width="0dp"
+        android:layout_width="350sp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/mainscreenbutton"
+        android:drawableLeft="@drawable/mainscreenforumicon"
+        android:drawablePadding="-110sp"
+        android:gravity="center"
         android:onClick="openForumActivity"
+        android:paddingLeft="120sp"
         android:text="FORUM"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/StoreButton" />
-        app:layout_constraintTop_toBottomOf="@+id/RankingButton" />
 
     <Button
         android:id="@+id/buttonEditProfile"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="119dp"
         android:layout_height="43dp"
-        android:layout_marginTop="2dp"
         android:text="Edit profile"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.96"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/UserName"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 </androidx.constraintlayout.widget.ConstraintLayout>
