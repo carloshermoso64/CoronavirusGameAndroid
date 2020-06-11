@@ -57,6 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void register(View v) {
         loadingDialog.startLoadingDialog();
+        User u = new User();
         u.setName(textUser.getEditText().getText().toString());
         u.setPassword(textPassword.getEditText().getText().toString());
         u.setEmail(textEmail.getEditText().getText().toString());
@@ -99,6 +100,7 @@ public class RegisterActivity extends AppCompatActivity {
                     String token = response.body();
                     ApiConn.getInstace().setUserToken(token);
                     ApiConn.getInstace().setUsername(name);
+                    getUserId(name);
                     editor.putString("token", token);
                     editor.putString("name", name);
                     editor.commit();
@@ -108,6 +110,24 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 Toast.makeText(context, "Error", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void getUserId(String username) {
+        Call<User> userCall = service.getUser(username);
+        userCall.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.code() == 201) {
+                    ApiConn.getInstace().setUserId(response.body().getId());
+                    editor.putString("id", response.body().getId());
+                    editor.commit();
+                }
+            }
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+
             }
         });
     }

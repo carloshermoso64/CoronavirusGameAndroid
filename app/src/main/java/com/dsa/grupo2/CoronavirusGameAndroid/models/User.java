@@ -1,26 +1,38 @@
 package com.dsa.grupo2.CoronavirusGameAndroid.models;
 
 
+import com.google.gson.annotations.SerializedName;
+
 import org.apache.commons.lang3.RandomStringUtils;
 
 public class User {
-    transient String id;
+    @SerializedName("id")
+    private String id;
     private String name;
     private String email;
     private String password;
     private int exp;
     private int level;
+    private String adminRights;
+
+    public User() {
+    }
+
+    public User(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.level = 1;
+        this.adminRights = "FALSE";
+    }
 
     public String toStringLevel() {
         return "level = " + level;
     }
 
-
     public String toStringExp() {
         return "exp = " + exp;
     }
-
-    private String adminRights;
 
     public void setId(String id) {
         this.id = id;
@@ -42,9 +54,6 @@ public class User {
         this.exp = exp;
     }
 
-    public User() {
-    }
-
     public int getLevel() {
         return level;
     }
@@ -59,14 +68,6 @@ public class User {
 
     public void setAdminRights(String adminRights) {
         this.adminRights = adminRights;
-    }
-
-    public User(String name, String email, String password) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.level = 1;
-        this.adminRights = "FALSE";
     }
 
     public String getId() {

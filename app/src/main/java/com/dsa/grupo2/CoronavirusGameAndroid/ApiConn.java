@@ -49,7 +49,7 @@ public class ApiConn {
                 .addInterceptor(interceptor)
                 .build();
         this.retrofit = new Retrofit.Builder()
-                .baseUrl("http://147.83.7.204:8080/dsaApp/")
+                .baseUrl("http://localhost:8080/dsaApp/")
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
@@ -76,12 +76,9 @@ public class ApiConn {
     public ForumService getForumService() {
         return forumService;
 	}
+
     public ShopService getShopService() {
         return shopService;
-    }
-
-    public void setShopService(ShopService shopService) {
-        this.shopService = shopService;
     }
 
     public String getUsername() {

@@ -22,11 +22,13 @@ public class SplashActivity extends AppCompatActivity {
         sharedPref = context.getSharedPreferences("coronavirusgame", Context.MODE_PRIVATE);
         String token = sharedPref.getString("token","notoken");
         String name = sharedPref.getString("name", "noname");
+        String id = sharedPref.getString("id", "noid");
         ApiConn.getInstace();
 
         if (!token.equals("notoken")) {
             ApiConn.getInstace().setUserToken(token);
             ApiConn.getInstace().setUsername(name);
+            ApiConn.getInstace().setUserId(id);
             mRunnable = () -> startActivity(new Intent(getApplicationContext(), MenuActivity.class));
         }
 
