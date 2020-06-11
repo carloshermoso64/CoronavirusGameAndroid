@@ -12,7 +12,7 @@ import com.dsa.grupo2.CoronavirusGameAndroid.models.BestLevel;
 
 import java.util.List;
 
-public class MyAdapterRanking extends RecyclerView.Adapter<MyAdapterRanking.ViewHolder> {
+public class MyAdapterLocalRanking extends RecyclerView.Adapter<MyAdapterLocalRanking.ViewHolder> {
 
     private List<BestLevel> values;
 
@@ -42,16 +42,16 @@ public class MyAdapterRanking extends RecyclerView.Adapter<MyAdapterRanking.View
         notifyItemRemoved(position);
     }
 
-    public MyAdapterRanking(List<BestLevel> myDataset) {
+    public MyAdapterLocalRanking(List<BestLevel> myDataset) {
         values = myDataset;
         LayoutInflater inflater;
     }
 
     @Override
-    public MyAdapterRanking.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyAdapterLocalRanking.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View v = inflater.inflate(R.layout.itemlayout_ranking, parent, false);
+        View v = inflater.inflate(R.layout.itemlayout_userlevel_ranking, parent, false);
         // set the view's size, margins, paddings and layout parameters
         ViewHolder vh = new ViewHolder(v);
         return vh;
@@ -67,8 +67,6 @@ public class MyAdapterRanking extends RecyclerView.Adapter<MyAdapterRanking.View
 
         final int bestTime = values.get(position).getBestTime();
         holder.time.setText(String.valueOf(bestTime));
-
-        Context context = holder.numeroNivel.getContext();
     }
 
     @Override

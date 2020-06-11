@@ -91,7 +91,7 @@ public class RankingTabUserLevels extends Fragment {
         editor = sharedPref.edit();
 
         bestLevelService = ApiConn.getInstace().getBestLevelService();
-        Call<List<BestLevel>> userScores = bestLevelService.userScores(ApiConn.getInstace().getUsername());//CAMBIAR!!!!!!!!!
+        Call<List<BestLevel>> userScores = bestLevelService.userScores(ApiConn.getInstace().getUsername());
 
         userScores.enqueue(new Callback<List<BestLevel>>() {
             @Override
@@ -129,14 +129,14 @@ public class RankingTabUserLevels extends Fragment {
         layoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(layoutManager);
 
-        mAdapter = new MyAdapterRanking(bestLevelList);
+        mAdapter = new MyAdapterLocalRanking(bestLevelList);
         recyclerView.setAdapter(mAdapter);
 
         return view;
     }
 
     private void loadResult(){
-        mAdapter = new MyAdapterRanking(bestLevelList);
+        mAdapter = new MyAdapterLocalRanking(bestLevelList);
         recyclerView.setAdapter(mAdapter);
     }
 

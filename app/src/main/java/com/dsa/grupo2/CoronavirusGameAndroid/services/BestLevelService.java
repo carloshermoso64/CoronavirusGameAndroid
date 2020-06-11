@@ -16,7 +16,7 @@ public interface BestLevelService {
     Call<List<User>> userRanking();
 
     @GET("stats/levelscores/{levelnumber}")//Devuelve los BestLevel de un mismo nivel ordenados
-    Call<List<BestLevel>> levelScores(@Path("levelnumber") int levelnumber);
+    Call<List<BestLevelTO>> levelScores(@Path("levelnumber") int levelnumber);
 
     @GET("stats/userscores/{username}")//Devuelve los BestLevel un usuario
     Call<List<BestLevel>> userScores(@Path("username") String username);

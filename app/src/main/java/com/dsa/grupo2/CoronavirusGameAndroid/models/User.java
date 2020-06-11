@@ -4,7 +4,7 @@ package com.dsa.grupo2.CoronavirusGameAndroid.models;
 import org.apache.commons.lang3.RandomStringUtils;
 
 public class User {
-    transient String id;
+    private String id;
     private String name;
     private String email;
     private String password;

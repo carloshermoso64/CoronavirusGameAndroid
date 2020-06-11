@@ -25,8 +25,13 @@ public interface UserService {
     @POST("user/login")
     Call<String> logIn(@Body Credentials cred);
 
-    @GET("user/{name}") Call<User> getUser(@Path("name") String name);
+    @GET("user/{name}")
+    Call<User> getUser(@Path("name") String name);
+
+    @GET("user/search/{id}")
+    Call<User> getUserByID(@Path("id") String id);
 
     @PUT("user/{id}")
     Call<User> updateUser(@Body User user,@Path(value="id",encoded=true) String oldId);
+
 }
