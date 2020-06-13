@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dsa.grupo2.CoronavirusGameAndroid.models.BestLevel;
@@ -56,6 +59,9 @@ public class RankingTabGlobalLevels extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
+    private Button searchBtn;
+    private EditText editTextNumber;
+
     private View view;
 
     public RankingTabGlobalLevels() {
@@ -89,7 +95,6 @@ public class RankingTabGlobalLevels extends Fragment {
         }
 
         context = getActivity();
-
 
         sharedPref = context.getSharedPreferences("coronavirusgame", Context.MODE_PRIVATE);
         editor = sharedPref.edit();
@@ -125,6 +130,16 @@ public class RankingTabGlobalLevels extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_tab_global_levels, container, false);
 
+        searchBtn = (Button) view.findViewById(R.id.searchButton);
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchButtonClick();
+            }
+        });
+
+        editTextNumber = (EditText) view.findViewById(R.id.editTextNumber);
+
         recyclerView = view.findViewById(R.id.recycleList);
         // use this setting to
         // improve performance if you know that changes
@@ -144,5 +159,27 @@ public class RankingTabGlobalLevels extends Fragment {
     private void loadResult(){
         mAdapter = new MyAdapterGlobalRanking(bestLevelList);
         recyclerView.setAdapter(mAdapter);
+    }
+
+    private void searchButtonClick(){
+        Call<List<BestLevelTO>> userScores = bestLevelService.levelScores(Integer.parseInt(editTextNumber.getText().toString()));
+
+        userScores.enqueue(new Callback<List<BestLevelTO>>() {
+            @Override
+            public void onResponse(Call<List<BestLevelTO>> call, Response<List<BestLevelTO>> response) {
+                if (response.code()== 201){
+                    bestLevelList = response.body();
+                    loadResult();
+                }else if (response.code()==404){
+                    Toast.makeText(context,"Level not found",Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(context,"Unexpected error",Toast.LENGTH_LONG).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<List<BestLevelTO>> call, Throwable t) {
+                Toast.makeText(context,"Error retrieving best level list",Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }
