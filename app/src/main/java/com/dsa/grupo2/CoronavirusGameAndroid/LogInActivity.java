@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.dsa.grupo2.CoronavirusGameAndroid.models.Credentials;
+import com.dsa.grupo2.CoronavirusGameAndroid.models.User;
 import com.dsa.grupo2.CoronavirusGameAndroid.services.UserService;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -60,8 +61,12 @@ public class LogInActivity extends AppCompatActivity {
                     String token = response.body();
                     ApiConn.getInstace().setUserToken(token);
                     ApiConn.getInstace().setUsername(textUser.getEditText().getText().toString());
+                    ApiConn.getInstace().setEmail("Enter your email again");
+                    ApiConn.getInstace().setPassword(textPassword.getEditText().getText().toString());
+                    getUserId(textUser.getEditText().getText().toString());
                     editor.putString("token", token);
                     editor.putString("name", textUser.getEditText().getText().toString());
+                    editor.putString("password", textPassword.getEditText().getText().toString());
                     editor.commit();
                     startActivity(new Intent(context, MenuActivity.class));
                 }
@@ -74,6 +79,25 @@ public class LogInActivity extends AppCompatActivity {
             public void onFailure(Call<String> call, Throwable t) {
                 Toast.makeText(context, "Error", Toast.LENGTH_LONG).show();
                 loadingDialog.dismissDialog();
+            }
+        });
+    }
+
+    public void getUserId(String username) {
+        Call<User> userCall = service.getUser(username);
+        final String[] userId = {null};
+        userCall.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.code() == 201) {
+                    ApiConn.getInstace().setUserId(response.body().getId());
+                    editor.putString("id", response.body().getId());
+                    editor.commit();
+                }
+            }
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+
             }
         });
     }

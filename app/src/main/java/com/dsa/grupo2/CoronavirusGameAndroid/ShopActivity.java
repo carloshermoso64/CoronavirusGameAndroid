@@ -36,16 +36,16 @@ public class ShopActivity extends AppCompatActivity {
         final TextView textCash = (TextView) findViewById(R.id.textCash);
         final TextView textOutputLifes = (TextView) findViewById(R.id.textOutputLifes);
         final TextView textOutputNeuron = (TextView) findViewById(R.id.textOutputNeuron);
-        final TextView textLevel = (TextView) findViewById(R.id.textUsername);
+        final TextView textLevel = (TextView) findViewById(R.id.textLevel);
 
         final CheckBox checkBoxMask = (CheckBox) findViewById(R.id.checkBoxMask);
 
         shopService = ApiConn.getInstace().getShopService();
         username = ApiConn.getInstace().getUsername();
 
-        textUsername.setText(username);
-
         Call<User> getUser =  ApiConn.getInstace().getUserService().getUser(username);
+
+        textUsername.setText(username);
 
         getUser.enqueue(new Callback<User>() {
             @Override
@@ -59,18 +59,24 @@ public class ShopActivity extends AppCompatActivity {
                     getGame.enqueue(new Callback<Game>() {
                         @Override
                         public void onResponse(Call<Game> call, Response<Game> response) {
-                            Game game = response.body();
-                            int cash = game.getCash();
-                            int lifes = game.getLifes();
-                            int neuron = game.getNeurons();
-                            String mask = game.getMask();
-                            if (mask.equals("TRUE")){
-                                checkBoxMask.setChecked(true);
+                            if (response.code() == 201) {
+                                Game game = response.body();
+                                int cash = game.getCash();
+                                int lifes = game.getLifes();
+                                int neuron = game.getNeurons();
+                                int level = game.getCompletedLevels();
+                                String mask = game.getMask();
+                                if (mask.equals("TRUE")) {
+                                    checkBoxMask.setChecked(true);
+                                }
+                                textLevel.setText("Level: " + String.valueOf(level));
+                                textCash.setText(String.valueOf(cash) + "$");
+                                textOutputLifes.setText(String.valueOf(lifes));
+                                textOutputNeuron.setText(String.valueOf(neuron));
                             }
-                            textLevel.setText(mask);
-                            textCash.setText(String.valueOf(cash));
-                            textOutputLifes.setText(String.valueOf(lifes));
-                            textOutputNeuron.setText(String.valueOf(neuron));
+                            else{
+                                Toast.makeText(getApplicationContext(),"You must be registered to use the store",Toast.LENGTH_LONG).show();
+                            }
                         }
 
                         @Override
@@ -79,7 +85,9 @@ public class ShopActivity extends AppCompatActivity {
                         }
                     });
                 }
-
+                else{
+                    Toast.makeText(getApplicationContext(),"Coronavirus has entered our servers and the connection has been lost",Toast.LENGTH_LONG).show();
+                }
 
             }
 
@@ -159,7 +167,7 @@ public class ShopActivity extends AppCompatActivity {
                 final TextView textOutputNeuron = (TextView) findViewById(R.id.textOutputNeuron);
                 final CheckBox checkBoxMask = (CheckBox) findViewById(R.id.checkBoxMask);
 
-                textCash.setText(String.valueOf(cash));
+                textCash.setText(String.valueOf(cash) + "$");
                 textOutputLifes.setText(String.valueOf(lifes));
                 textOutputNeuron.setText(String.valueOf(neuron));
                 if (mask.equals("TRUE")){

@@ -27,7 +27,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/textUsername"
+        android:id="@+id/textLevel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Level"
@@ -81,116 +81,160 @@
         android:id="@+id/textMask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginStart="16dp"
         android:text="Mask"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
-
-    <CheckBox
-        android:id="@+id/checkBoxMask"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="90dp"
-        android:layout_marginTop="95dp"
-        android:checked="false"
-        android:clickable="false"
-        app:layout_constraintStart_toStartOf="@+id/textMask"
-        app:layout_constraintTop_toTopOf="@+id/shopText" />
-
-    <TextView
-        android:id="@+id/textNeuron"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="Neuron"
-        app:layout_constraintStart_toStartOf="@+id/textMask"
-        app:layout_constraintTop_toBottomOf="@+id/textMask" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="@+id/imageView4"
+        app:layout_constraintVertical_bias="0.652" />
 
     <TextView
         android:id="@+id/textLifes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
         android:text="Lifes"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
         app:layout_constraintStart_toStartOf="@+id/textNeuron"
-        app:layout_constraintTop_toBottomOf="@+id/textNeuron" />
+        app:layout_constraintTop_toTopOf="@+id/imageView6" />
 
     <TextView
-        android:id="@+id/textPriceMask"
+        android:id="@+id/textNeuron"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
-        android:text="Price: 100 $"
-        app:layout_constraintBottom_toBottomOf="@+id/textMask"
-        app:layout_constraintStart_toEndOf="@+id/checkBoxMask" />
+        android:text="Neuron"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+        app:layout_constraintStart_toStartOf="@+id/textMask"
+        app:layout_constraintTop_toTopOf="@+id/imageView5" />
 
     <TextView
         android:id="@+id/textPriceNeuron"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Price 200 $"
-        app:layout_constraintBottom_toBottomOf="@+id/textNeuron"
-        app:layout_constraintStart_toStartOf="@+id/textPriceMask" />
+        app:layout_constraintBottom_toBottomOf="@+id/textOutputNeuron"
+        app:layout_constraintStart_toStartOf="@+id/textPriceMask"
+        app:layout_constraintTop_toTopOf="@+id/textOutputNeuron" />
+
+    <TextView
+        android:id="@+id/textPriceMask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:text="Price: 100 $"
+        app:layout_constraintBottom_toBottomOf="@+id/checkBoxMask"
+        app:layout_constraintStart_toEndOf="@+id/checkBoxMask"
+        app:layout_constraintTop_toTopOf="@+id/checkBoxMask" />
 
     <TextView
         android:id="@+id/textPriceLifes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Price 300 $"
-        app:layout_constraintBottom_toBottomOf="@+id/textLifes"
-        app:layout_constraintStart_toStartOf="@+id/textPriceNeuron" />
+        app:layout_constraintBottom_toBottomOf="@+id/textOutputLifes"
+        app:layout_constraintStart_toStartOf="@+id/textPriceNeuron"
+        app:layout_constraintTop_toTopOf="@+id/textOutputLifes" />
 
     <Button
         android:id="@+id/btBuyMask"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="85dp"
+        android:foreground="@drawable/shopiconbuy"
+        android:foregroundGravity="center"
         android:onClick="buyMask"
-        android:text="BUY"
-        app:layout_constraintStart_toEndOf="@+id/textPriceMask"
-        app:layout_constraintTop_toTopOf="@+id/shopText" />
+        app:layout_constraintBottom_toBottomOf="@+id/textPriceMask"
+        app:layout_constraintStart_toStartOf="@+id/btBuyNeuron"
+        app:layout_constraintTop_toTopOf="@+id/textPriceMask" />
 
     <Button
         android:id="@+id/btBuyNeuron"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:foreground="@drawable/shopiconbuy"
+        android:foregroundGravity="center"
         android:onClick="buyNeuron"
-        android:text="BUY"
-        app:layout_constraintStart_toStartOf="@+id/btBuyMask"
-        app:layout_constraintTop_toBottomOf="@+id/btBuyMask" />
+        app:layout_constraintBottom_toBottomOf="@+id/textPriceNeuron"
+        app:layout_constraintStart_toStartOf="@+id/btBuyLifes"
+        app:layout_constraintTop_toTopOf="@+id/textPriceNeuron" />
 
     <Button
         android:id="@+id/btBuyLifes"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:foreground="@drawable/shopiconbuy"
+        android:foregroundGravity="center"
         android:onClick="buyLife"
-        android:text="BUY"
-        app:layout_constraintStart_toStartOf="@+id/btBuyNeuron"
-        app:layout_constraintTop_toBottomOf="@+id/btBuyNeuron" />
+        app:layout_constraintBottom_toBottomOf="@+id/textPriceLifes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textPriceLifes"
+        app:layout_constraintTop_toTopOf="@+id/textPriceLifes"
+        app:layout_constraintVertical_bias="0.379" />
 
     <TextView
         android:id="@+id/textOutputNeuron"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="45dp"
         android:text="0"
+        app:layout_constraintBottom_toBottomOf="@+id/textNeuron"
+        app:layout_constraintEnd_toEndOf="@+id/checkBoxMask"
         app:layout_constraintStart_toStartOf="@+id/checkBoxMask"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxMask" />
+        app:layout_constraintTop_toTopOf="@+id/textNeuron" />
+
+    <CheckBox
+        android:id="@+id/checkBoxMask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:checked="false"
+        android:clickable="false"
+        app:layout_constraintBottom_toBottomOf="@+id/textMask"
+        app:layout_constraintStart_toEndOf="@+id/textMask"
+        app:layout_constraintTop_toTopOf="@+id/textMask" />
 
     <TextView
         android:id="@+id/textOutputLifes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="45dp"
         android:text="0"
-        app:layout_constraintStart_toStartOf="@+id/checkBoxMask"
-        app:layout_constraintTop_toBottomOf="@+id/textOutputNeuron" />
+        app:layout_constraintBottom_toBottomOf="@+id/textLifes"
+        app:layout_constraintEnd_toEndOf="@+id/textOutputNeuron"
+        app:layout_constraintStart_toStartOf="@+id/textOutputNeuron"
+        app:layout_constraintTop_toTopOf="@+id/textLifes" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView4"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:srcCompat="@drawable/neuronicon" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="74dp"
+        android:layout_marginBottom="64dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shopText"
+        app:srcCompat="@drawable/maskicon" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView5"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imageView5"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5"
+        app:srcCompat="@drawable/lifeicon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

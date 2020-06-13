@@ -25,7 +25,8 @@ public interface UserService {
     @POST("user/login")
     Call<String> logIn(@Body Credentials cred);
 
-    @GET("user/{name}")
+
+    @GET("user/{name}") 
     Call<User> getUser(@Path("name") String name);
 
     @GET("user/search/{id}")
