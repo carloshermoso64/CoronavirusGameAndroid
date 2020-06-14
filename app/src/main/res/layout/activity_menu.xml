@@ -6,6 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".MenuActivity">
 
+    <Button
+        android:id="@+id/logOutButton"
+        android:layout_width="350sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/mainscreenbutton"
+        android:drawableLeft="@drawable/logoutbutton"
+        android:drawablePadding="-110sp"
+        android:gravity="center"
+        android:paddingLeft="120sp"
+        android:text="LOG OUT"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forumButton" />
+
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="0dp"
