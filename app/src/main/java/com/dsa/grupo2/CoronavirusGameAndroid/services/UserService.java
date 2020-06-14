@@ -35,4 +35,6 @@ public interface UserService {
     @PUT("user/{id}")
     Call<User> updateUser(@Body User user,@Path(value="id",encoded=true) String oldId);
 
+    @POST("user/logout")
+    Call<Void> logOut(@Body Token token);
 }

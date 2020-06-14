@@ -2,14 +2,21 @@ package com.dsa.grupo2.CoronavirusGameAndroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.dsa.grupo2.CoronavirusGameAndroid.models.Token;
 import com.squareup.picasso.Picasso;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MenuActivity extends AppCompatActivity {
     final LoadingDialog loadingDialog = new LoadingDialog(MenuActivity.this);
@@ -28,7 +35,6 @@ public class MenuActivity extends AppCompatActivity {
         Picasso.get().load("http://localhost:8080/dsaApp/user/image/"+ApiConn.getInstace().getUserId()).fit().transform(new CircleTransform())
                 .placeholder(R.drawable.defaultprofile)
                 .error(R.drawable.defaultprofile).into(profileImage);
-
 
 
         rankingbtn.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +86,26 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(new Intent(this, SelectLevelActivity.class));
     }
 
+
+    public void logOut(View v) {
+        Token t = new Token(ApiConn.getInstace().getUserId(),ApiConn.getInstace().getUserToken());
+        Call<Void> logOutCall = ApiConn.getInstace().getUserService().logOut(t);
+        logOutCall.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                getApplicationContext().getSharedPreferences("coronavirusgame", Context.MODE_PRIVATE).edit().clear().commit();
+                startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
+                finish();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+
+            }
+        });
+
+
+    }
 
 
 }

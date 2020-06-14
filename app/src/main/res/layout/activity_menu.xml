@@ -15,6 +15,7 @@
         android:drawableLeft="@drawable/logoutbutton"
         android:drawablePadding="-110sp"
         android:gravity="center"
+        android:onClick="logOut"
         android:paddingLeft="120sp"
         android:text="LOG OUT"
         android:textColor="#FFFFFF"
