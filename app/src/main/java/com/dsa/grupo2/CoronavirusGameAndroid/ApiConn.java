@@ -2,6 +2,7 @@ package com.dsa.grupo2.CoronavirusGameAndroid;
 
 
 import com.dsa.grupo2.CoronavirusGameAndroid.services.ForumService;
+import com.dsa.grupo2.CoronavirusGameAndroid.services.GameService;
 import com.dsa.grupo2.CoronavirusGameAndroid.services.ShopService;
 
 import com.dsa.grupo2.CoronavirusGameAndroid.services.BestLevelService;
@@ -30,6 +31,8 @@ public class ApiConn {
 
     private BestLevelService bestLevelService;
 
+    private GameService gameService;
+
     private String userToken;
     private String username;
     private String userId;
@@ -51,7 +54,7 @@ public class ApiConn {
                 .addInterceptor(interceptor)
                 .build();
         this.retrofit = new Retrofit.Builder()
-                .baseUrl("http://147.83.7.204:8080/dsaApp/")
+                .baseUrl("http://localhost:8080/dsaApp/")
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
@@ -61,6 +64,7 @@ public class ApiConn {
         this.forumService = retrofit.create(ForumService.class);
         this.shopService = retrofit.create(ShopService.class);
         this.bestLevelService = retrofit.create(BestLevelService.class);
+        this.gameService = retrofit.create(GameService.class);
     }
 
     public String getUserToken() {
@@ -117,6 +121,14 @@ public class ApiConn {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public GameService getGameService() {
+        return gameService;
+    }
+
+    public void setGameService(GameService gameService) {
+        this.gameService = gameService;
     }
 }
 

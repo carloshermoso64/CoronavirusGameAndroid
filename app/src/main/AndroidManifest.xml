@@ -13,22 +13,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
+        <activity android:name=".SelectLevelActivity"></activity>
         <activity android:name=".ForumActivity" />
-
         <activity android:name=".ShopActivity" />
-
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".RankingActivity" />
-        <activity android:name=".LogInActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".SplashActivity">
+        <activity android:name=".LogInActivity"
+            android:noHistory="true"/>
+        <activity android:name=".RegisterActivity"
+            android:noHistory="true"/>
+        <activity android:name=".SplashActivity"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
     </application>
 

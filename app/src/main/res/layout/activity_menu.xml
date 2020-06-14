@@ -6,6 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".MenuActivity">
 
+    <Button
+        android:id="@+id/logOutButton"
+        android:layout_width="350sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/mainscreenbutton"
+        android:drawableLeft="@drawable/logoutbutton"
+        android:drawablePadding="-110sp"
+        android:gravity="center"
+        android:paddingLeft="120sp"
+        android:text="LOG OUT"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forumButton" />
+
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="0dp"
@@ -15,30 +31,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/mainscreentitle" />
 
-    <TextView
-        android:id="@+id/UserName"
-        android:layout_width="116dp"
-        android:layout_height="60dp"
-        android:text="User ID"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
-
     <Button
         android:id="@+id/PlayButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/mainscreenbutton"
         android:drawableLeft="@drawable/mainscreenplayicon"
-        android:text="PLAY"
         android:drawablePadding="-110sp"
+        android:onClick="openLevelSelect"
         android:paddingLeft="120sp"
+        android:text="PLAY"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/RankingButton"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/RankingButton"
-        app:layout_constraintTop_toBottomOf="@+id/UserName" />
+        app:layout_constraintTop_toBottomOf="@+id/profileMark" />
 
     <Button
         android:id="@+id/RankingButton"
@@ -47,9 +55,9 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/mainscreenbutton"
         android:drawableLeft="@drawable/mainscreenstatsbutton"
-        android:text="Stats"
         android:drawablePadding="-110sp"
         android:paddingLeft="120sp"
+        android:text="Stats"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="@+id/StoreButton"
         app:layout_constraintStart_toStartOf="@+id/StoreButton"
@@ -92,7 +100,45 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="119dp"
         android:layout_height="43dp"
+        android:layout_marginEnd="8dp"
         android:text="Edit profile"
-        app:layout_constraintStart_toEndOf="@+id/UserName"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintBottom_toBottomOf="@+id/profileMark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/profileMark" />
+
+    <ImageView
+        android:id="@+id/profileMark"
+        android:layout_width="212dp"
+        android:layout_height="82dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toStartOf="@+id/buttonEditProfile"
+        app:layout_constraintHorizontal_bias="0.37"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:srcCompat="@drawable/profilemark" />
+
+    <ImageView
+        android:id="@+id/menuProfileImage"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="@+id/profileMark"
+        app:layout_constraintEnd_toEndOf="@+id/profileMark"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="@+id/profileMark"
+        app:layout_constraintTop_toTopOf="@+id/profileMark"
+        app:srcCompat="@drawable/defaultprofile" />
+
+    <TextView
+        android:id="@+id/menuUsernameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/profileMark"
+        app:layout_constraintEnd_toEndOf="@+id/profileMark"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toEndOf="@+id/menuProfileImage"
+        app:layout_constraintTop_toTopOf="@+id/profileMark" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

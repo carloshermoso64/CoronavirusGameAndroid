@@ -3,6 +3,7 @@ package com.dsa.grupo2.CoronavirusGameAndroid;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -10,6 +11,7 @@ import com.dsa.grupo2.CoronavirusGameAndroid.models.Game;
 import com.dsa.grupo2.CoronavirusGameAndroid.models.User;
 import com.dsa.grupo2.CoronavirusGameAndroid.services.ShopService;
 import com.dsa.grupo2.CoronavirusGameAndroid.services.UserService;
+import com.squareup.picasso.Picasso;
 
 import androidx.appcompat.app.AppCompatActivity;
 import retrofit2.Call;
@@ -39,6 +41,11 @@ public class ShopActivity extends AppCompatActivity {
         final TextView textLevel = (TextView) findViewById(R.id.textLevel);
 
         final CheckBox checkBoxMask = (CheckBox) findViewById(R.id.checkBoxMask);
+
+        ImageView profileImage = findViewById(R.id.shopProfile);
+        Picasso.get().load("http://localhost:8080/dsaApp/user/image/"+ApiConn.getInstace().getUserId()).fit().transform(new CircleTransform())
+                .placeholder(R.drawable.defaultprofile)
+                .error(R.drawable.defaultprofile).into(profileImage);
 
         shopService = ApiConn.getInstace().getShopService();
         username = ApiConn.getInstace().getUsername();
