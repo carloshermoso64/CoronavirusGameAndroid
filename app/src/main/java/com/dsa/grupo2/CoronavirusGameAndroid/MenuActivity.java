@@ -87,6 +87,9 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(new Intent(this, SelectLevelActivity.class));
     }
 
+    public void openChat(View v) {
+        startActivity(new Intent(this, ChatActivity.class));
+    }
 
     public void logOut(View v) {
         Token t = new Token(ApiConn.getInstace().getUserId(),ApiConn.getInstace().getUserToken());

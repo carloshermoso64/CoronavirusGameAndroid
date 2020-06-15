@@ -26,4 +26,8 @@ public interface ForumService {
 
     @GET("forum/{threadId}")
     Call<List<ForumMessage>> getMessagesOfThread(@Path("threadId") String threadId);
+
+    @Multipart
+    @POST("forum/{threadId}")
+    Call<Void> postMessage(@Path("threadId") String threadId,@Part MultipartBody.Part author, @Part MultipartBody.Part content);
 }

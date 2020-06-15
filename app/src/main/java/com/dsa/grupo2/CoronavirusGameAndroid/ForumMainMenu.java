@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.dsa.grupo2.CoronavirusGameAndroid.adapters.ForumMainAdapter;
@@ -32,6 +33,7 @@ public class ForumMainMenu extends AppCompatActivity implements AddThreadDialog.
     RecyclerView forumViewer;
     SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView.LayoutManager layoutManager;
+    ProgressBar loader;
 
 
     @Override
@@ -39,10 +41,10 @@ public class ForumMainMenu extends AppCompatActivity implements AddThreadDialog.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forum_main_menu);
 
-
-
         forumViewer = findViewById(R.id.forumThreadViewer);
+        forumViewer.setVisibility(View.GONE);
         swipeRefreshLayout = findViewById(R.id.forumSwipe);
+        loader = findViewById(R.id.progressBar2);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -68,6 +70,8 @@ public class ForumMainMenu extends AppCompatActivity implements AddThreadDialog.
                     forumAdapter = new ForumMainAdapter(allThreads);
                     forumViewer.setAdapter(forumAdapter);
                     forumAdapter.setOnClick(ForumMainMenu.this);
+                    loader.setVisibility(View.GONE);
+                    forumViewer.setVisibility(View.VISIBLE);
                 }
             }
 

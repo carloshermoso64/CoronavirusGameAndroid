@@ -7,10 +7,27 @@
     tools:context=".MenuActivity">
 
     <Button
+        android:id="@+id/chatButton"
+        android:layout_width="350sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/mainscreenbutton"
+        android:drawableLeft="@drawable/mainscreenforumicon"
+        android:drawablePadding="-110sp"
+        android:gravity="center"
+        android:onClick="openChat"
+        android:paddingLeft="120sp"
+        android:text="CHAT (WIP)"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forumButton" />
+
+    <Button
         android:id="@+id/logOutButton"
         android:layout_width="350sp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/mainscreenbutton"
         android:drawableLeft="@drawable/logoutbutton"
         android:drawablePadding="-110sp"
@@ -21,7 +38,7 @@
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forumButton" />
+        app:layout_constraintTop_toBottomOf="@+id/chatButton" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -36,7 +53,7 @@
         android:id="@+id/PlayButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/mainscreenbutton"
         android:drawableLeft="@drawable/mainscreenplayicon"
         android:drawablePadding="-110sp"
@@ -53,7 +70,7 @@
         android:id="@+id/RankingButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/mainscreenbutton"
         android:drawableLeft="@drawable/mainscreenstatsbutton"
         android:drawablePadding="-110sp"
@@ -68,7 +85,7 @@
         android:id="@+id/StoreButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/mainscreenbutton"
         android:drawableLeft="@drawable/mainscreenshopicon"
         android:drawablePadding="-110sp"
@@ -83,9 +100,9 @@
         android:id="@+id/forumButton"
         android:layout_width="350sp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/mainscreenbutton"
-        android:drawableLeft="@drawable/mainscreenforumicon"
+        android:drawableLeft="@drawable/forumlogo"
         android:drawablePadding="-110sp"
         android:gravity="center"
         android:onClick="openForumActivity"
