@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -22,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ForumMainMenu extends AppCompatActivity implements AddThreadDialog.NoticeDialogListener{
+public class ForumMainMenu extends AppCompatActivity implements AddThreadDialog.NoticeDialogListener, ForumMainAdapter.OnItemClicked{
 
     ForumService forumService = ApiConn.getInstace().getForumService();
     ArrayList<ForumThread> allThreads;
@@ -30,6 +32,7 @@ public class ForumMainMenu extends AppCompatActivity implements AddThreadDialog.
     RecyclerView forumViewer;
     SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView.LayoutManager layoutManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +67,7 @@ public class ForumMainMenu extends AppCompatActivity implements AddThreadDialog.
                     forumViewer.setLayoutManager(layoutManager);
                     forumAdapter = new ForumMainAdapter(allThreads);
                     forumViewer.setAdapter(forumAdapter);
+                    forumAdapter.setOnClick(ForumMainMenu.this);
                 }
             }
 
@@ -109,5 +113,14 @@ public class ForumMainMenu extends AppCompatActivity implements AddThreadDialog.
     @Override
     public void errorAddingThread(DialogFragment dialog) {
         Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
+        Intent intent = new Intent(getApplicationContext(), ForumThreadActivity.class);
+        intent.putExtra("threadId", allThreads.get(position).getId());
+        intent.putExtra("threadName", allThreads.get(position).getName());
+        startActivity(intent);
     }
 }

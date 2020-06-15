@@ -13,12 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ForumMainMenu"></activity>
+        <activity android:name=".ForumThreadActivity"></activity>
+        <activity android:name=".ForumMainMenu" />
         <activity
             android:name=".SelectLevelActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".ChatActivity"
             android:configChanges="orientation|keyboardHidden"
