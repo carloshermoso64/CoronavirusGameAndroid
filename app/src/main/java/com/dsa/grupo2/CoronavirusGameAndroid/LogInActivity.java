@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.dsa.grupo2.CoronavirusGameAndroid.models.Credentials;
 import com.dsa.grupo2.CoronavirusGameAndroid.models.User;
 import com.dsa.grupo2.CoronavirusGameAndroid.services.UserService;
+import com.dsa.grupo2.CoronavirusGameAndroid.utils.ApiConn;
 import com.google.android.material.textfield.TextInputLayout;
 
 import retrofit2.Call;

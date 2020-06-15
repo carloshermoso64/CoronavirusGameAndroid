@@ -8,16 +8,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dsa.grupo2.CoronavirusGameAndroid.ApiConn;
+import com.dsa.grupo2.CoronavirusGameAndroid.utils.ApiConn;
 import com.dsa.grupo2.CoronavirusGameAndroid.R;
 import com.dsa.grupo2.CoronavirusGameAndroid.models.Message;
 
 import java.text.DateFormat;
-import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-public class ForumAdapter extends RecyclerView.Adapter {
+public class ChatAdapter extends RecyclerView.Adapter {
     private List<Message> messages;
     public int messageSent = 0;
     public int messageReceived = 1;
@@ -83,7 +82,7 @@ public class ForumAdapter extends RecyclerView.Adapter {
         notifyItemRemoved(position);
     }
 
-    public ForumAdapter(List<Message> myDataset) {
+    public ChatAdapter(List<Message> myDataset) {
         messages = myDataset;
     }
 

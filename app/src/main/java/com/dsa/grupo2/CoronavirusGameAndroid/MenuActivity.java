@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dsa.grupo2.CoronavirusGameAndroid.models.Token;
+import com.dsa.grupo2.CoronavirusGameAndroid.utils.ApiConn;
+import com.dsa.grupo2.CoronavirusGameAndroid.utils.CircleTransform;
 import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
@@ -69,7 +70,7 @@ public class MenuActivity extends AppCompatActivity {
 
 
     public void openForumActivity(View v) {
-        Intent intent = new Intent(this, ForumActivity.class);
+        Intent intent = new Intent(this, ForumMainMenu.class);
         startActivity(intent);
     }
     public void openShopActivity(){

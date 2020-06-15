@@ -8,6 +8,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.dsa.grupo2.CoronavirusGameAndroid.utils.ApiConn;
+
 public class SplashActivity extends AppCompatActivity {
 
     private Handler mHandler;

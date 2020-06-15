@@ -11,6 +11,8 @@ import com.dsa.grupo2.CoronavirusGameAndroid.models.Game;
 import com.dsa.grupo2.CoronavirusGameAndroid.models.User;
 import com.dsa.grupo2.CoronavirusGameAndroid.services.ShopService;
 import com.dsa.grupo2.CoronavirusGameAndroid.services.UserService;
+import com.dsa.grupo2.CoronavirusGameAndroid.utils.ApiConn;
+import com.dsa.grupo2.CoronavirusGameAndroid.utils.CircleTransform;
 import com.squareup.picasso.Picasso;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,7 +45,7 @@ public class ShopActivity extends AppCompatActivity {
         final CheckBox checkBoxMask = (CheckBox) findViewById(R.id.checkBoxMask);
 
         ImageView profileImage = findViewById(R.id.shopProfile);
-        Picasso.get().load("http://localhost:8080/dsaApp/user/image/"+ApiConn.getInstace().getUserId()).fit().transform(new CircleTransform())
+        Picasso.get().load("http://localhost:8080/dsaApp/user/image/"+ ApiConn.getInstace().getUserId()).fit().transform(new CircleTransform())
                 .placeholder(R.drawable.defaultprofile)
                 .error(R.drawable.defaultprofile).into(profileImage);
 

@@ -1,4 +1,4 @@
-package com.dsa.grupo2.CoronavirusGameAndroid;
+package com.dsa.grupo2.CoronavirusGameAndroid.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;

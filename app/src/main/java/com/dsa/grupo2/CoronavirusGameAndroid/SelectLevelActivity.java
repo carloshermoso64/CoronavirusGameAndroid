@@ -2,7 +2,6 @@ package com.dsa.grupo2.CoronavirusGameAndroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -12,6 +11,7 @@ import com.dsa.grupo2.CoronavirusGameAndroid.models.Game;
 import com.dsa.grupo2.CoronavirusGameAndroid.models.Level;
 import com.dsa.grupo2.CoronavirusGameAndroid.services.GameService;
 import com.dsa.grupo2.CoronavirusGameAndroid.services.ShopService;
+import com.dsa.grupo2.CoronavirusGameAndroid.utils.ApiConn;
 
 import java.util.ArrayList;
 import java.util.List;

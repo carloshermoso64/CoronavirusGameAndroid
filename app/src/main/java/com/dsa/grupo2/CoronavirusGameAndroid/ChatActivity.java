@@ -11,9 +11,10 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.dsa.grupo2.CoronavirusGameAndroid.adapters.ForumAdapter;
+import com.dsa.grupo2.CoronavirusGameAndroid.adapters.ChatAdapter;
 import com.dsa.grupo2.CoronavirusGameAndroid.models.Message;
-import com.dsa.grupo2.CoronavirusGameAndroid.services.ForumService;
+import com.dsa.grupo2.CoronavirusGameAndroid.services.ChatService;
+import com.dsa.grupo2.CoronavirusGameAndroid.utils.ApiConn;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,14 +23,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ForumActivity extends AppCompatActivity {
+public class ChatActivity extends AppCompatActivity {
 
 
     EditText preparedMessage;
     ArrayList<Message> messages;
     RecyclerView messagesViewer;
-    ForumService forumService;
-    ForumAdapter forumAdapter;
+    ChatService chatService;
+    ChatAdapter chatAdapter;
     private RecyclerView.LayoutManager layoutManager;
     ProgressBar loading;
     SwipeRefreshLayout refreshLayout;
@@ -37,12 +38,12 @@ public class ForumActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forum);
+        setContentView(R.layout.activity_chat);
 
 
         preparedMessage = findViewById(R.id.sendMessageText);
         messagesViewer = findViewById(R.id.messageViewer);
-        forumService = ApiConn.getInstace().getForumService();
+        chatService = ApiConn.getInstace().getChatService();
         loading = findViewById(R.id.forumLoading);
         refreshLayout = findViewById(R.id.refreshMessage);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -67,7 +68,7 @@ public class ForumActivity extends AppCompatActivity {
 
         }
         else {
-            Call<Void> sendMessageCall = forumService.sendMessage(msg);
+            Call<Void> sendMessageCall = chatService.sendMessage(msg);
             sendMessageCall.enqueue(new Callback() {
                 @Override
                 public void onResponse(Call call, Response response) {
@@ -86,7 +87,7 @@ public class ForumActivity extends AppCompatActivity {
     }
 
     public void loadMessagesOnView() {
-        Call<List<Message>> messageCall = forumService.getAllMessages();
+        Call<List<Message>> messageCall = chatService.getAllMessages();
 
         messageCall.enqueue(new Callback<List<Message>>() {
             @Override
@@ -96,8 +97,8 @@ public class ForumActivity extends AppCompatActivity {
                     messages = (ArrayList<Message>) response.body();
                     layoutManager = new LinearLayoutManager(getApplicationContext());
                     messagesViewer.setLayoutManager(layoutManager);
-                    forumAdapter = new ForumAdapter(messages);
-                    messagesViewer.setAdapter(forumAdapter);
+                    chatAdapter = new ChatAdapter(messages);
+                    messagesViewer.setAdapter(chatAdapter);
                     messagesViewer.scrollToPosition(messages.size()-1);
                     messagesViewer.setVisibility(View.VISIBLE);
                     loading.setVisibility(View.GONE);
@@ -113,7 +114,7 @@ public class ForumActivity extends AppCompatActivity {
     }
 
     public void refreshMessages() {
-        Call<List<Message>> messageCall = forumService.getAllMessages();
+        Call<List<Message>> messageCall = chatService.getAllMessages();
 
         messageCall.enqueue(new Callback<List<Message>>() {
             @Override
@@ -121,7 +122,7 @@ public class ForumActivity extends AppCompatActivity {
                 if (response.code() == 201) {
                     messages.clear();
                     messages.addAll(response.body());
-                    forumAdapter.notifyDataSetChanged();
+                    chatAdapter.notifyDataSetChanged();
                     messagesViewer.scrollToPosition(messages.size()-1);
                     refreshLayout.setRefreshing(false);
                 }

@@ -1,6 +1,7 @@
-package com.dsa.grupo2.CoronavirusGameAndroid;
+package com.dsa.grupo2.CoronavirusGameAndroid.utils;
 
 
+import com.dsa.grupo2.CoronavirusGameAndroid.services.ChatService;
 import com.dsa.grupo2.CoronavirusGameAndroid.services.ForumService;
 import com.dsa.grupo2.CoronavirusGameAndroid.services.GameService;
 import com.dsa.grupo2.CoronavirusGameAndroid.services.ShopService;
@@ -9,7 +10,6 @@ import com.dsa.grupo2.CoronavirusGameAndroid.services.BestLevelService;
 
 import com.dsa.grupo2.CoronavirusGameAndroid.services.UserService;
 
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -25,13 +25,15 @@ public class ApiConn {
 
     private UserService userService;
 
-    private ForumService forumService;
+    private ChatService chatService;
 
     private ShopService shopService;
 
     private BestLevelService bestLevelService;
 
     private GameService gameService;
+
+    private ForumService forumService;
 
     private String userToken;
     private String username;
@@ -54,17 +56,18 @@ public class ApiConn {
                 .addInterceptor(interceptor)
                 .build();
         this.retrofit = new Retrofit.Builder()
-                .baseUrl("http://localhost:8080/dsaApp/")
+                .baseUrl("http://10.0.2.2:8080/dsaApp/")
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
 
         this.userService = retrofit.create(UserService.class);
-        this.forumService = retrofit.create(ForumService.class);
+        this.chatService = retrofit.create(ChatService.class);
         this.shopService = retrofit.create(ShopService.class);
         this.bestLevelService = retrofit.create(BestLevelService.class);
         this.gameService = retrofit.create(GameService.class);
+        this.forumService = retrofit.create(ForumService.class);
     }
 
     public String getUserToken() {
@@ -79,12 +82,16 @@ public class ApiConn {
         return userService;
     }
 
-    public ForumService getForumService() {
-        return forumService;
+    public ChatService getChatService() {
+        return chatService;
 	}
 
     public ShopService getShopService() {
         return shopService;
+    }
+
+    public ForumService getForumService() {
+        return forumService;
     }
 
     public String getUsername() {

@@ -12,14 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.dsa.grupo2.CoronavirusGameAndroid.models.BestLevel;
+import com.dsa.grupo2.CoronavirusGameAndroid.adapters.MyAdapterGlobalRanking;
 import com.dsa.grupo2.CoronavirusGameAndroid.models.BestLevelTO;
-import com.dsa.grupo2.CoronavirusGameAndroid.models.User;
 import com.dsa.grupo2.CoronavirusGameAndroid.services.BestLevelService;
 import com.dsa.grupo2.CoronavirusGameAndroid.services.UserService;
+import com.dsa.grupo2.CoronavirusGameAndroid.utils.ApiConn;
 
 import java.util.ArrayList;
 import java.util.List;

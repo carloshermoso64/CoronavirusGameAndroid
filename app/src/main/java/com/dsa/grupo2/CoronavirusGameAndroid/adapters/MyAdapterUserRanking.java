@@ -1,6 +1,5 @@
-package com.dsa.grupo2.CoronavirusGameAndroid;
+package com.dsa.grupo2.CoronavirusGameAndroid.adapters;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,7 +7,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.dsa.grupo2.CoronavirusGameAndroid.models.BestLevel;
+import com.dsa.grupo2.CoronavirusGameAndroid.R;
 import com.dsa.grupo2.CoronavirusGameAndroid.models.User;
 
 import java.util.List;

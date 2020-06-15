@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.dsa.grupo2.CoronavirusGameAndroid.adapters.MyAdapter;
 import com.dsa.grupo2.CoronavirusGameAndroid.models.User;
-import com.dsa.grupo2.CoronavirusGameAndroid.services.UserService;
+import com.dsa.grupo2.CoronavirusGameAndroid.utils.ApiConn;
 import com.google.android.material.textfield.TextInputEditText;
 import com.squareup.picasso.Picasso;
 
