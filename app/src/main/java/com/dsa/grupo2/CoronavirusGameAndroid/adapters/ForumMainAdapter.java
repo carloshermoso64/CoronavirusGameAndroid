@@ -17,6 +17,8 @@ import com.dsa.grupo2.CoronavirusGameAndroid.utils.ApiConn;
 import com.dsa.grupo2.CoronavirusGameAndroid.utils.CircleTransform;
 import com.dsa.grupo2.CoronavirusGameAndroid.R;
 import com.dsa.grupo2.CoronavirusGameAndroid.models.ForumThread;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
@@ -59,8 +61,10 @@ public class ForumMainAdapter extends RecyclerView.Adapter{
             author.setText(thread.getAuthor());
             name.setText(thread.getName());
             lastMessage.setText("Last message: " + df.format(thread.getLastMessage()));
-            Picasso.get().load("http://10.0.2.2:8080/dsaApp/user/image/"+ thread.getAuthorId()).fit().transform(new CircleTransform())
+            Picasso.get().load("http://"+ ApiConn.getInstace().getIP()+":8080/dsaApp/user/image/"+ thread.getAuthorId()).fit().transform(new CircleTransform())
                     .placeholder(R.drawable.defaultprofile)
+                    .memoryPolicy(MemoryPolicy.NO_CACHE )
+                    .networkPolicy(NetworkPolicy.NO_CACHE)
                     .error(R.drawable.defaultprofile).into(pic);
         }
     }

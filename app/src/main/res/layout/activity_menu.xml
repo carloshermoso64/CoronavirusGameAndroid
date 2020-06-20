@@ -113,24 +113,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/StoreButton" />
 
-    <Button
-        android:id="@+id/buttonEditProfile"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="119dp"
-        android:layout_height="43dp"
-        android:layout_marginEnd="8dp"
-        android:text="Edit profile"
-        app:layout_constraintBottom_toBottomOf="@+id/profileMark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/profileMark" />
-
     <ImageView
         android:id="@+id/profileMark"
         android:layout_width="212dp"
         android:layout_height="82dp"
+        android:onClick="openEditProfile"
         android:scaleType="fitXY"
-        app:layout_constraintEnd_toStartOf="@+id/buttonEditProfile"
-        app:layout_constraintHorizontal_bias="0.37"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
         app:srcCompat="@drawable/profilemark" />
@@ -139,6 +128,7 @@
         android:id="@+id/menuProfileImage"
         android:layout_width="70dp"
         android:layout_height="70dp"
+        android:onClick="openEditProfile"
         app:layout_constraintBottom_toBottomOf="@+id/profileMark"
         app:layout_constraintEnd_toEndOf="@+id/profileMark"
         app:layout_constraintHorizontal_bias="0.05"
@@ -150,6 +140,7 @@
         android:id="@+id/menuUsernameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="openEditProfile"
         android:text="TextView"
         android:textColor="#FFFFFF"
         android:textStyle="bold"

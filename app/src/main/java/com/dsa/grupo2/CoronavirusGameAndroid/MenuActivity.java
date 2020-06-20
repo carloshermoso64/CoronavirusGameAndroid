@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.dsa.grupo2.CoronavirusGameAndroid.models.Token;
 import com.dsa.grupo2.CoronavirusGameAndroid.utils.ApiConn;
 import com.dsa.grupo2.CoronavirusGameAndroid.utils.CircleTransform;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
@@ -21,6 +23,8 @@ import retrofit2.Response;
 
 public class MenuActivity extends AppCompatActivity {
     final LoadingDialog loadingDialog = new LoadingDialog(MenuActivity.this);
+    ImageView profileImage;
+    TextView usernameText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +33,14 @@ public class MenuActivity extends AppCompatActivity {
         final Button playbtn = (Button) findViewById(R.id.PlayButton);
         final Button rankingbtn = (Button) findViewById(R.id.RankingButton);
         final Button storebtn = (Button) findViewById(R.id.StoreButton);
-        final Button editProfileBtn = findViewById(R.id.buttonEditProfile);
-        ImageView profileImage = findViewById(R.id.menuProfileImage);
-        TextView usernameText = findViewById(R.id.menuUsernameText);
+        profileImage = findViewById(R.id.menuProfileImage);
+        usernameText = findViewById(R.id.menuUsernameText);
         usernameText.setText(ApiConn.getInstace().getUsername());
-        Picasso.get().load("http://localhost:8080/dsaApp/user/image/"+ApiConn.getInstace().getUserId()).fit().transform(new CircleTransform())
+        Picasso.get().load("http://10.0.2.2:8080/dsaApp/user/image/"+ApiConn.getInstace().getUserId()).fit()
+                .transform(new CircleTransform())
                 .placeholder(R.drawable.defaultprofile)
+                .memoryPolicy(MemoryPolicy.NO_CACHE )
+                .networkPolicy(NetworkPolicy.NO_CACHE)
                 .error(R.drawable.defaultprofile).into(profileImage);
 
 
@@ -53,14 +59,6 @@ public class MenuActivity extends AppCompatActivity {
                 openShopActivity();;
             }
         });
-        editProfileBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                loadingDialog.startLoadingDialog();
-                openEditProfile();
-            }
-        });
-
     }
     public void openRankingActivity(){
         Intent intent = new Intent(this,RankingActivity.class);
@@ -78,9 +76,8 @@ public class MenuActivity extends AppCompatActivity {
         loadingDialog.dismissDialog();
         startActivity(intent);
     }
-    public void openEditProfile(){
-        loadingDialog.dismissDialog();
-        startActivity(new Intent(this,EditProfileActivity.class));
+    public void openEditProfile(View v){
+        startActivity(new Intent(this,ProfileActivity.class));
     }
 
     public void openLevelSelect(View v) {
@@ -107,9 +104,17 @@ public class MenuActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 
-
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        usernameText.setText(ApiConn.getInstace().getUsername());
+        Picasso.get().load("http://10.0.2.2:8080/dsaApp/user/image/" + ApiConn.getInstace().getUserId()).fit()
+                .transform(new CircleTransform())
+                .placeholder(R.drawable.defaultprofile)
+                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                .networkPolicy(NetworkPolicy.NO_CACHE)
+                .error(R.drawable.defaultprofile).into(profileImage);
+    }
 }

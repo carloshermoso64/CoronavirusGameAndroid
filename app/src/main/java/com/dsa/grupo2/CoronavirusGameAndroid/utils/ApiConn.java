@@ -40,6 +40,7 @@ public class ApiConn {
     private String userId;
     private String email;
     private String password;
+    private String IP;
 
     public static ApiConn getInstace() {
         if (instace == null)
@@ -50,13 +51,14 @@ public class ApiConn {
     private ApiConn() {
         this.interceptor = new HttpLoggingInterceptor();
         this.interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        this.IP = "10.0.2.2";
 
         this.client = new OkHttpClient
                 .Builder()
                 .addInterceptor(interceptor)
                 .build();
         this.retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8080/dsaApp/")
+                .baseUrl("http://"+ IP +":8080/dsaApp/")
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
@@ -76,6 +78,10 @@ public class ApiConn {
 
     public void setUserToken(String userToken) {
         this.userToken = userToken;
+    }
+
+    public String getIP() {
+        return IP;
     }
 
     public UserService getUserService() {
