@@ -1,13 +1,19 @@
 package com.dsa.grupo2.CoronavirusGameAndroid;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.PermissionChecker;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Camera;
@@ -114,15 +120,34 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int item) {
 
                 if (options[item].equals("Camera")) {
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(intent, 1);
 
-                } else if (options[item].equals("Gallery")) {
-                    Intent intent = new Intent(Intent.ACTION_PICK);
-                    intent.setType("image/*");
-                    String[] mimeTypes = {"image/jpeg", "image/png"};
-                    intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
-                    startActivityForResult(intent, 2);
+                    if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(ProfileActivity.this,
+                                new String[]{Manifest.permission.CAMERA}, 1);
+                    }
+                    else {
+                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        startActivityForResult(intent, 1);
+                    }
+
+
+
+
+                }
+
+                else if (options[item].equals("Gallery")) {
+
+                    if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(ProfileActivity.this,
+                                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 2);
+                    }
+                    else {
+                        Intent intent = new Intent(Intent.ACTION_PICK);
+                        intent.setType("image/*");
+                        String[] mimeTypes = {"image/jpeg", "image/png"};
+                        intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
+                        startActivityForResult(intent, 2);
+                    }
                 } else if (options[item].equals("Cancel")) {
                     dialog.dismiss();
                 }
@@ -258,4 +283,36 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 1) {
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, 1);
+
+            }
+            else {
+                Toast.makeText(ProfileActivity.this,
+                        "Camera Permission Denied",
+                        Toast.LENGTH_SHORT)
+                        .show();
+            }
+        }
+
+        if (requestCode == 2) {
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                String[] mimeTypes = {"image/jpeg", "image/png"};
+                intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes);
+                startActivityForResult(intent, 2);
+            }
+        }
+
+
+    }
 }

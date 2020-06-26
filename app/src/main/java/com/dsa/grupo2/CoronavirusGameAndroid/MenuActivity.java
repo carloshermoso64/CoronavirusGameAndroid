@@ -36,7 +36,7 @@ public class MenuActivity extends AppCompatActivity {
         profileImage = findViewById(R.id.menuProfileImage);
         usernameText = findViewById(R.id.menuUsernameText);
         usernameText.setText(ApiConn.getInstace().getUsername());
-        Picasso.get().load("http://10.0.2.2:8080/dsaApp/user/image/"+ApiConn.getInstace().getUserId()).fit()
+        Picasso.get().load("http://"+ ApiConn.getInstace().getIP() + ":8080/dsaApp/user/image/"+ApiConn.getInstace().getUserId()).fit()
                 .transform(new CircleTransform())
                 .placeholder(R.drawable.defaultprofile)
                 .memoryPolicy(MemoryPolicy.NO_CACHE )
@@ -110,10 +110,10 @@ public class MenuActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         usernameText.setText(ApiConn.getInstace().getUsername());
-        Picasso.get().load("http://10.0.2.2:8080/dsaApp/user/image/" + ApiConn.getInstace().getUserId()).fit()
+        Picasso.get().load("http://"+ ApiConn.getInstace().getIP() + ":8080/dsaApp/user/image/"+ApiConn.getInstace().getUserId()).fit()
                 .transform(new CircleTransform())
                 .placeholder(R.drawable.defaultprofile)
-                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                .memoryPolicy(MemoryPolicy.NO_CACHE )
                 .networkPolicy(NetworkPolicy.NO_CACHE)
                 .error(R.drawable.defaultprofile).into(profileImage);
     }

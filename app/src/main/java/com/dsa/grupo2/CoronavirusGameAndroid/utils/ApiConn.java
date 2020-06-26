@@ -51,7 +51,7 @@ public class ApiConn {
     private ApiConn() {
         this.interceptor = new HttpLoggingInterceptor();
         this.interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        this.IP = "10.0.2.2";
+        this.IP = "147.83.7.204";
 
         this.client = new OkHttpClient
                 .Builder()
