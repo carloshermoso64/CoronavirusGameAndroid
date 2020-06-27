@@ -83,7 +83,7 @@ public class MenuActivity extends AppCompatActivity {
 
     public void openLevelSelect(View v) {
         //startActivity(new Intent(this, SelectLevelActivity.class));
-        startActivity(new Intent(this, UnityPlayerActivity.class));
+        startActivity(new Intent(this, TemporalUnityActivity.class));
     }
 
     public void openChat(View v) {
