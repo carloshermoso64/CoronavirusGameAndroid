@@ -28,6 +28,9 @@ android {
 }
 
 dependencies {
+
+    implementation project(':coronagame-debug')
+
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'

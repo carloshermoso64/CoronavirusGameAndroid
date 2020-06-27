@@ -1,2 +1,3 @@
+include ':coronagame-debug'
 rootProject.name='CoronavirusGameAndroid'
 include ':app'

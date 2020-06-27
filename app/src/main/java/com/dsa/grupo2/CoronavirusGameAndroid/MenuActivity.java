@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.dsa.grupo2.CoronavirusGameAndroid.models.Token;
 import com.dsa.grupo2.CoronavirusGameAndroid.utils.ApiConn;
 import com.dsa.grupo2.CoronavirusGameAndroid.utils.CircleTransform;
+import com.dsa.grupo2.coronagame.UnityPlayerActivity;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -81,7 +82,8 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void openLevelSelect(View v) {
-        startActivity(new Intent(this, SelectLevelActivity.class));
+        //startActivity(new Intent(this, SelectLevelActivity.class));
+        startActivity(new Intent(this, UnityPlayerActivity.class));
     }
 
     public void openChat(View v) {
