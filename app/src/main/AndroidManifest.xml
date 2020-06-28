@@ -72,6 +72,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.unity3d.player.UnityPlayerActivity"/>
     </application>
 
 </manifest>

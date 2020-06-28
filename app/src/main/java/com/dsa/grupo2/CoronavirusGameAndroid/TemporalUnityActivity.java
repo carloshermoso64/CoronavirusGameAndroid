@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.dsa.grupo2.coronagame.UnityPlayerActivity;
+import com.unity3d.player.UnityPlayerActivity;
 
 public class TemporalUnityActivity extends AppCompatActivity {
 
