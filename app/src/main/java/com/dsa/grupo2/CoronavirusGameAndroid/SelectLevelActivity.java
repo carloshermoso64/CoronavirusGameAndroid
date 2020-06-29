@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.dsa.grupo2.CoronavirusGameAndroid.adapters.LevelAdapter;
@@ -12,6 +13,7 @@ import com.dsa.grupo2.CoronavirusGameAndroid.models.Level;
 import com.dsa.grupo2.CoronavirusGameAndroid.services.GameService;
 import com.dsa.grupo2.CoronavirusGameAndroid.services.ShopService;
 import com.dsa.grupo2.CoronavirusGameAndroid.utils.ApiConn;
+import com.unity3d.player.UnityPlayerActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +22,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SelectLevelActivity extends AppCompatActivity {
+public class SelectLevelActivity extends AppCompatActivity implements LevelAdapter.OnItemClicked {
 
     GameService gameService;
     ShopService shopService;
@@ -77,6 +79,7 @@ public class SelectLevelActivity extends AppCompatActivity {
                 rv.setLayoutManager(llm);
                 LevelAdapter levelAdapter = new LevelAdapter(levels, unlockedLevels);
                 rv.setAdapter(levelAdapter);
+                levelAdapter.setOnClick(SelectLevelActivity.this);
             }
 
             @Override
@@ -84,5 +87,13 @@ public class SelectLevelActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(getApplicationContext(), UnityPlayerActivity.class);
+        String test = levels.get(position).getMap();
+        intent.putExtra("arguments",levels.get(position).getMap());
+        startActivity(intent);
     }
 }

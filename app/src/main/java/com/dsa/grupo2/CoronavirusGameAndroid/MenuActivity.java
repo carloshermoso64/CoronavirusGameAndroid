@@ -44,7 +44,6 @@ public class MenuActivity extends AppCompatActivity {
                 .networkPolicy(NetworkPolicy.NO_CACHE)
                 .error(R.drawable.defaultprofile).into(profileImage);
 
-
         rankingbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,8 +81,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void openLevelSelect(View v) {
-        //startActivity(new Intent(this, SelectLevelActivity.class));
-        startActivity(new Intent(this, TemporalUnityActivity.class));
+        startActivity(new Intent(this, SelectLevelActivity.class));
     }
 
     public void openChat(View v) {

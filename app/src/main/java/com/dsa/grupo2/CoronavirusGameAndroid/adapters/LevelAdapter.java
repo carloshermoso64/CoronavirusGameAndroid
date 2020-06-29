@@ -23,6 +23,11 @@ public class LevelAdapter extends RecyclerView.Adapter {
     public int lockedLevel = 0;
     public int unlockedLevel = 1;
 
+    private LevelAdapter.OnItemClicked onClick;
+
+    public interface OnItemClicked {
+        void onItemClick(int position);
+    }
 
     public class UnlockedLevelHolder extends RecyclerView.ViewHolder {
 
@@ -84,8 +89,17 @@ public class LevelAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        if (holder.getItemViewType() == unlockedLevel)
+        if (holder.getItemViewType() == unlockedLevel) {
             ((UnlockedLevelHolder) holder).bind(levels.get(position));
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onClick.onItemClick(position);
+                }
+            });
+        }
+
         else ((LockedLevelHolder) holder).bind(levels.get(position));
 
     }
@@ -98,5 +112,10 @@ public class LevelAdapter extends RecyclerView.Adapter {
     public LevelAdapter(List<Level> lvls, int completedLevels) {
         levels = lvls;
         unlockedLevels = completedLevels + 1;
+    }
+
+    public void setOnClick(LevelAdapter.OnItemClicked onClick)
+    {
+        this.onClick=onClick;
     }
 }

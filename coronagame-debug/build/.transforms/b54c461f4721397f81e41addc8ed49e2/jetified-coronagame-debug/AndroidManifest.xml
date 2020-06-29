@@ -44,14 +44,6 @@
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:screenOrientation="fullSensor" >
-
-            <!--
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
-        <category android:name="android.intent.category.LAUNCHER" />
-        <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
-      </intent-filter>
-            -->
             <meta-data
                 android:name="unityplayer.UnityActivity"
                 android:value="true" />
@@ -59,7 +51,7 @@
 
         <meta-data
             android:name="unity.build-id"
-            android:value="ffd72941-4569-4735-b6f3-97bc8446a5a8" />
+            android:value="aeaa3b84-85ce-4a76-9adb-15684da2e21e" />
         <meta-data
             android:name="unity.splash-mode"
             android:value="0" />
