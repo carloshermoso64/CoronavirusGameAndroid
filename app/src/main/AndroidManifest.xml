@@ -18,7 +18,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon,android:theme,android:label">
-        <activity android:name=".TemporalUnityActivity"></activity>
+        <activity android:name=".ResultActivity"></activity>
+        <activity android:name=".TemporalUnityActivity" />
         <activity
             android:name=".ProfileActivity"
             android:configChanges="orientation|keyboardHidden"
@@ -72,7 +73,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.unity3d.player.UnityPlayerActivity"/>
+        <activity android:name="com.unity3d.player.UnityPlayerActivity" />
     </application>
 
 </manifest>
