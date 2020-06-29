@@ -7,6 +7,7 @@ import com.dsa.grupo2.CoronavirusGameAndroid.models.User;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -17,6 +18,6 @@ public interface GameService {
     Call<List<Level>> getAllLevels();
 
     @POST("game/levelcompleted")
-    Call<LevelCompleted> completedLevels(LevelCompleted lvl);
+    Call<LevelCompleted> completedLevels(@Body LevelCompleted lvl);
 
 }

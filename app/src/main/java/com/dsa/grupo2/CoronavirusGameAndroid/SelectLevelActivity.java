@@ -13,7 +13,7 @@ import com.dsa.grupo2.CoronavirusGameAndroid.models.Level;
 import com.dsa.grupo2.CoronavirusGameAndroid.services.GameService;
 import com.dsa.grupo2.CoronavirusGameAndroid.services.ShopService;
 import com.dsa.grupo2.CoronavirusGameAndroid.utils.ApiConn;
-import com.unity3d.player.UnityPlayerActivity;
+import com.dsa.grupo2.coronagame.UnityPlayerActivity;
 
 import java.util.ArrayList;
 import java.util.List;

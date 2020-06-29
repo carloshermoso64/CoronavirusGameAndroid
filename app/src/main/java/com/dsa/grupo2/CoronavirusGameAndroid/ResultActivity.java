@@ -6,11 +6,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dsa.grupo2.CoronavirusGameAndroid.models.LevelCompleted;
+import com.dsa.grupo2.CoronavirusGameAndroid.services.GameService;
 import com.dsa.grupo2.CoronavirusGameAndroid.utils.ApiConn;
 
 import java.util.Date;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ResultActivity extends AppCompatActivity {
 
@@ -49,6 +55,19 @@ public class ResultActivity extends AppCompatActivity {
             lvl.setScore(score);
             lvl.setTime(time);
             lvl.setStartTime(new Date());
+
+            Call<LevelCompleted> finishLevelCall = ApiConn.getInstace().getGameService().completedLevels(lvl);
+            finishLevelCall.enqueue(new Callback<LevelCompleted>() {
+                @Override
+                public void onResponse(Call<LevelCompleted> call, Response<LevelCompleted> response) {
+                    Toast.makeText(getApplicationContext(), "Somos el pene", Toast.LENGTH_LONG).show();
+                }
+
+                @Override
+                public void onFailure(Call<LevelCompleted> call, Throwable t) {
+
+                }
+            });
         }
 
         else {
