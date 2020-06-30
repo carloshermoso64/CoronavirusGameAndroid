@@ -155,6 +155,8 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/circle"
+        android:foreground="@drawable/weblogo"
+        android:foregroundGravity="center_vertical|center_horizontal"
         android:onClick="openWeb"
         app:layout_constraintBottom_toBottomOf="@+id/profileMark"
         app:layout_constraintEnd_toEndOf="parent"
