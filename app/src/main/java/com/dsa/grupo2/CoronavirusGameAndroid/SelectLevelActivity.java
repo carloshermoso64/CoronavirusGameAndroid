@@ -94,6 +94,7 @@ public class SelectLevelActivity extends AppCompatActivity implements LevelAdapt
         Intent intent = new Intent(getApplicationContext(), UnityPlayerActivity.class);
         String test = levels.get(position).getMap();
         intent.putExtra("arguments",levels.get(position).getMap());
+        intent.putExtra("levelNumber", levels.get(position).getLvlNumber());
         startActivity(intent);
     }
 }

@@ -3,6 +3,7 @@ package com.dsa.grupo2.CoronavirusGameAndroid.models;
 import java.util.Date;
 
 public class LevelCompleted {
+    private boolean completed;
     private int levelNumber;
     private int score;
     private int time;
@@ -12,6 +13,14 @@ public class LevelCompleted {
 
     public LevelCompleted() {
 
+    }
+
+    public boolean getCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 
     public int getLevelNumber() {

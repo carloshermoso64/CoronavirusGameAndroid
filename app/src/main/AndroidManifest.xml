@@ -18,7 +18,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon,android:theme,android:label">
-        <activity android:name=".ResultActivity"></activity>
+        <activity android:name=".WebActivity"></activity>
+        <activity android:name=".ResultActivity" />
         <activity android:name=".TemporalUnityActivity" />
         <activity
             android:name=".ProfileActivity"

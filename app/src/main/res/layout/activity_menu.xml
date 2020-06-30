@@ -150,4 +150,15 @@
         app:layout_constraintStart_toEndOf="@+id/menuProfileImage"
         app:layout_constraintTop_toTopOf="@+id/profileMark" />
 
+    <Button
+        android:id="@+id/webButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/circle"
+        android:onClick="openWeb"
+        app:layout_constraintBottom_toBottomOf="@+id/profileMark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/profileMark"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -45,16 +45,32 @@ public class ResultActivity extends AppCompatActivity {
             resultTime.setText(String.valueOf(time));
 
             LevelCompleted lvl = new LevelCompleted();
-            lvl.setIdUser(ApiConn.getInstace().getUserId());
-            if (keepsMask == "TRUE")
-                lvl.setKeepsMask(true);
-            else
-                lvl.setKeepsMask(false);
 
-            lvl.setLevelNumber(levelNumber);
-            lvl.setScore(score);
-            lvl.setTime(time);
-            lvl.setStartTime(new Date());
+            if (levelCompleted == "TRUE") {
+
+                lvl = new LevelCompleted();
+                lvl.setCompleted(true);
+                lvl.setIdUser(ApiConn.getInstace().getUserId());
+                if (keepsMask == "TRUE")
+                    lvl.setKeepsMask(true);
+                else
+                    lvl.setKeepsMask(false);
+
+                lvl.setLevelNumber(levelNumber);
+                lvl.setScore(score);
+                lvl.setTime(time);
+                lvl.setStartTime(new Date());
+            }
+
+            else {
+                lvl.setCompleted(false);
+                lvl.setIdUser(ApiConn.getInstace().getUserId());
+                lvl.setKeepsMask(false);
+                lvl.setLevelNumber(levelNumber);
+                lvl.setScore(0);
+                lvl.setTime(0);
+                lvl.setStartTime(new Date());
+            }
 
             Call<LevelCompleted> finishLevelCall = ApiConn.getInstace().getGameService().completedLevels(lvl);
             finishLevelCall.enqueue(new Callback<LevelCompleted>() {

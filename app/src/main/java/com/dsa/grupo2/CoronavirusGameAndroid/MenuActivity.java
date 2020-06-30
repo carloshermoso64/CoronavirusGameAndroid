@@ -106,6 +106,10 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
+    public void openWeb(View v) {
+        startActivity(new Intent(this, WebActivity.class));
+    }
+
     @Override
     protected void onRestart() {
         super.onRestart();
